@@ -1,14 +1,14 @@
 package Modelos;
 
-public class DetalleExposicion{
+public class DetalleExpo {
     private String lugarAsignado;
     private Obra obra;
     private Pared pared;
 
-    public DetalleExposicion() {
+    public DetalleExpo() {
     }
 
-    public DetalleExposicion(String lugarAsignado, Obra obra, Pared pared) {
+    public DetalleExpo(String lugarAsignado, Obra obra, Pared pared) {
         this.lugarAsignado = lugarAsignado;
         this.obra = obra;
         this.pared = pared;
@@ -40,21 +40,10 @@ public class DetalleExposicion{
 
     @Override
     public String toString() {
-        return "DetalleExposicion{" +
+        return "DetalleExpo{" +
                 "lugarAsignado='" + lugarAsignado + '\'' +
                 ", obra=" + obra +
                 ", pared=" + pared +
                 '}';
     }
-
-    /*buscarDuracionExtendida(){
-
-    }
-    conocerObra(){
-
-    }
-
-    conocerPared(){
-
-    }*/
 }
