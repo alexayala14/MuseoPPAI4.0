@@ -3,9 +3,8 @@ package Modelos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
-import java.util.Date;
 
-public class Entrada{
+public class Entrada {
     private LocalDate fechaVenta;
     private LocalTime horaVenta;
     private float monto;
@@ -95,15 +94,4 @@ public class Entrada{
                 ", tarifa=" + tarifa +
                 '}';
     }
-
-    /*  conocerGuiaAsignado(){
-
-    }
-    conocerSede(){
-
-    }
-    conocerTarifa(){
-
-    }*/
-
 }

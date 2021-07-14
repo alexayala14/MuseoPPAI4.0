@@ -1,14 +1,14 @@
 package Modelos;
 
-public class DetalleExpo {
+public class DetalleExposicion {
     private String lugarAsignado;
     private Obra obra;
     private Pared pared;
 
-    public DetalleExpo() {
+    public DetalleExposicion() {
     }
 
-    public DetalleExpo(String lugarAsignado, Obra obra, Pared pared) {
+    public DetalleExposicion(String lugarAsignado, Obra obra, Pared pared) {
         this.lugarAsignado = lugarAsignado;
         this.obra = obra;
         this.pared = pared;

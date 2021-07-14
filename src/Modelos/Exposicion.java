@@ -12,14 +12,14 @@ public class Exposicion {
     private LocalDate horaCierra;
     private String nombre;
     private TipoExposicion tipoExposicion;
-    private DetalleExpo[] detalleExposicions;
+    private DetalleExposicion[] detalleExposicions;
     private PublicoDestino[] publicoDestinos;
     private Empleado[] empleados;
 
     public Exposicion() {
     }
 
-    public Exposicion(LocalDate fechaFin, LocalDate finReplanificada, LocalDate fechaInicio, LocalDate fechaInicioReplanificada, LocalDate horaApertura, LocalDate horaCierra, String nombre, TipoExposicion tipoExposicion, DetalleExpo[] detalleExposicions, PublicoDestino[] publicoDestinos, Empleado[] empleados) {
+    public Exposicion(LocalDate fechaFin, LocalDate finReplanificada, LocalDate fechaInicio, LocalDate fechaInicioReplanificada, LocalDate horaApertura, LocalDate horaCierra, String nombre, TipoExposicion tipoExposicion, DetalleExposicion[] detalleExposicions, PublicoDestino[] publicoDestinos, Empleado[] empleados) {
         this.fechaFin = fechaFin;
         FinReplanificada = finReplanificada;
         this.fechaInicio = fechaInicio;
@@ -97,11 +97,11 @@ public class Exposicion {
         this.tipoExposicion = tipoExposicion;
     }
 
-    public DetalleExpo[] getDetalleExposicions() {
+    public DetalleExposicion[] getDetalleExposicions() {
         return detalleExposicions;
     }
 
-    public void setDetalleExposicions(DetalleExpo[] detalleExposicions) {
+    public void setDetalleExposicions(DetalleExposicion[] detalleExposicions) {
         this.detalleExposicions = detalleExposicions;
     }
 
