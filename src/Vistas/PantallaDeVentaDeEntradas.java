@@ -18,7 +18,7 @@ public class PantallaDeVentaDeEntradas extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 //JOptionPane.showConfirmDialog(null,"Precione Ok para confirmar venta");
                 //JOptionPane.showMessageDialog(null,"Precione Ok para confirmar venta");
-                int result = JOptionPane.showConfirmDialog(panel1, "Precione Ok para confirmar venta",
+                int result = JOptionPane.showConfirmDialog(panel1, "Presione Ok para confirmar venta",
                         "Title", JOptionPane.OK_CANCEL_OPTION);
 
                 if (result  == JOptionPane.OK_OPTION) {

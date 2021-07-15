@@ -20,8 +20,16 @@ class GestorDeVentaDeEntradas implements ActionListener {
     private Tarifa tarifa1;
     private PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas;
     private PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas;
+    private Tarifa[] tarifas;
 
-    public GestorDeVentaDeEntradas(PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas,Tarifa tarifa1) {
+    public GestorDeVentaDeEntradas(Tarifa tarifa1, PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas, PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas, Tarifa[] tarifas) {
+        this.tarifa1 = tarifa1;
+        this.pantallaDeVentaDeEntradas = pantallaDeVentaDeEntradas;
+        this.pantallaRegistrarVentaDeEntradas = pantallaRegistrarVentaDeEntradas;
+        this.tarifas = tarifas;
+    }
+
+    public GestorDeVentaDeEntradas(PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas, Tarifa tarifa1) {
         this.pantallaDeVentaDeEntradas=pantallaDeVentaDeEntradas;
         this.tarifa1=tarifa1;
         this.pantallaDeVentaDeEntradas.buttonRegistrarVenta.addActionListener(this);
@@ -81,7 +89,7 @@ class GestorDeVentaDeEntradas implements ActionListener {
         finCasoUso();
     }
 
-    public static List<Tarifa> buscarTarifas(){
+    public static Tarifa[] buscarTarifas(){
             //Sede.conocerTarifa.
         ArrayList<Tarifa> listaTarifas= new ArrayList<>();
         /*Sede[] sedes = new Sede[3];
@@ -119,11 +127,21 @@ class GestorDeVentaDeEntradas implements ActionListener {
 */
         //RECORRE TARIFAS Y MUESTRA POR CONSOLA FALTA QUE ENVIE A INTERFAZ LA INFO
         for(Tarifa e:tarifas){
-            System.out.println("La fecha Fin de Vigencia: "+e.getFechaFinVigencia()+"\n"+"La Fecha inicio Vigencia es: "+e.getFechaInicioVigencia()+"\n"+"El Monto es: "+e.getMonto()+"\n"+"El Monto Adicional por Guia es: "+e.getMontoAdicionaGuia()+"\n"+"El tipo de entrada es: "+e.getTipoDeEntrada().getNombre()+"\n"+"El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
+            //System.out.println("La fecha Fin de Vigencia: "+e.getFechaFinVigencia()+"\n"+"La Fecha inicio Vigencia es: "+e.getFechaInicioVigencia()+"\n"+"El Monto es: "+e.getMonto()+"\n"+"El Monto Adicional por Guia es: "+e.getMontoAdicionaGuia()+"\n"+"El tipo de entrada es: "+e.getTipoDeEntrada().getNombre()+"\n"+"El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
             listaTarifas.add(e);
         }
-        System.out.println("LA LISTA ES: "+listaTarifas.toString());
-        return listaTarifas;
+        /*System.out.println("LA LISTA ES: "+listaTarifas.toString());*/
+        Tarifa[] tarifas2;
+        tarifas2= Sede.conocerTarifa();
+        for(Tarifa e:tarifas2){
+            System.out.println("La fecha Fin de Vigencia DE TARIFA 2: "+e.getFechaFinVigencia()+"\n"+"La Fecha inicio Vigencia es: "+e.getFechaInicioVigencia()+"\n"+"El Monto es: "+e.getMonto()+"\n"+"El Monto Adicional por Guia es: "+e.getMontoAdicionaGuia()+"\n"+"El tipo de entrada es: "+e.getTipoDeEntrada().getNombre()+"\n"+"El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
+
+        }
+
+
+
+
+        return tarifas2;
     }
 
    /* public static void tomarSeleccionTarifa(Tarifa tarifa){
@@ -209,7 +227,7 @@ class GestorDeVentaDeEntradas implements ActionListener {
 
     public static void finCasoUso(){
 
-        System.out.println("Este es el fin");
+        System.out.println("Este es el fin del caso de uso");
     }
 
 
