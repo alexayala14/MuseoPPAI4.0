@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelos.*;
 import Vistas.PantallaDeVentaDeEntradas;
+import Vistas.PantallaRegistrarVentaDeEntradas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ class GestorDeVentaDeEntradas implements ActionListener {
     public static Date horaHoy;
     private Tarifa tarifa1;
     private PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas;
+    private PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas;
 
     public GestorDeVentaDeEntradas(PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas,Tarifa tarifa1) {
         this.pantallaDeVentaDeEntradas=pantallaDeVentaDeEntradas;
@@ -40,8 +42,8 @@ class GestorDeVentaDeEntradas implements ActionListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame jFrame=new PantallaDeVentaDeEntradas();
-                jFrame.setSize(600,600);
+                JFrame jFrame=new PantallaRegistrarVentaDeEntradas();
+                jFrame.setSize(900,900);
                 jFrame.setVisible(true);
             }
         });

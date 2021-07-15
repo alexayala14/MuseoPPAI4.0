@@ -25,7 +25,7 @@ public class PantallaDeVentaDeEntradas extends JFrame{
 // OK button was pressd
                     System.out.println("CONFIRMO OK");
                     dispose();
-                    System.exit(0);
+                    //System.exit(0);
                 } else if (result  == JOptionPane.CANCEL_OPTION) {
 // Cancel button was pressed
                     System.out.println("CANCELO OK");
