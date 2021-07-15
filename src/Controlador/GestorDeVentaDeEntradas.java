@@ -1,19 +1,50 @@
 package Controlador;
 
 import Modelos.*;
+import Vistas.PantallaDeVentaDeEntradas;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.*;
 
-class GestorDeVentaDeEntradas{
+class GestorDeVentaDeEntradas implements ActionListener {
+
    public static Date fechaHoy;
     public static Date horaHoy;
-    public static Tarifa tarifa1;
+    private Tarifa tarifa1;
+    private PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas;
+
+    public GestorDeVentaDeEntradas(PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas,Tarifa tarifa1) {
+        this.pantallaDeVentaDeEntradas=pantallaDeVentaDeEntradas;
+        this.tarifa1=tarifa1;
+        this.pantallaDeVentaDeEntradas.buttonRegistrarVenta.addActionListener(this);
+        //this.pantallaDeVentaDeEntradas.comboBoxTarifas.addItemListener;
+    }
+
+    /*public void  iniciar(){
+        pantallaDeVentaDeEntradas.setLocationRelativeTo(null);
+    }*/
+
+
 
     public static void main(String[] args){
+        /*PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas = new PantallaDeVentaDeEntradas();
+        Tarifa tarifa = new Tarifa();
+        GestorDeVentaDeEntradas gestorDeVentaDeEntradas = new GestorDeVentaDeEntradas(pantallaDeVentaDeEntradas,tarifa);*/
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame jFrame=new PantallaDeVentaDeEntradas();
+                jFrame.setSize(600,600);
+                jFrame.setVisible(true);
+            }
+        });
 
         registrarVentaDeEntrada();
 
@@ -32,7 +63,7 @@ class GestorDeVentaDeEntradas{
        //funciona faltan detalles de base
         buscarTarifas();
         //falta probar
-        tomarSeleccionTarifa(tarifa1);
+        //tomarSeleccionTarifa(tarifa1);
         calcularDuracionEstimada();
         tomarSeleccionDeEntradas();
         validarCantidadDeEntradas();
@@ -93,10 +124,10 @@ class GestorDeVentaDeEntradas{
         return listaTarifas;
     }
 
-    public static void tomarSeleccionTarifa(Tarifa tarifa){
+   /* public static void tomarSeleccionTarifa(Tarifa tarifa){
         tarifa1=tarifa;
 
-    }
+    }*/
     public static void calcularDuracionEstimada(){
         //ArrayList<DetalleExposicion> listaDetalles=new ArrayList<>();
        /* DetalleExposicion[] detalleExposicion=new DetalleExposicion[4];
@@ -180,6 +211,8 @@ class GestorDeVentaDeEntradas{
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
-
+    }
 }
