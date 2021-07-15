@@ -177,12 +177,13 @@ public class Sede{
             System.out.println("La fecha Fin de Vigencia TODAS TARIFAS EN SEDE: "+e.getFechaFinVigencia()+"\n"+"La Fecha inicio Vigencia es: "+e.getFechaInicioVigencia()+"\n"+"El Monto es: "+e.getMonto()+"\n"+"El Monto Adicional por Guia es: "+e.getMontoAdicionaGuia()+"\n"+"El tipo de entrada es: "+e.getTipoDeEntrada().getNombre()+"\n"+"El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
         }
         tarifas3=new Tarifa[list.size()];
+        list.toArray(tarifas3);
         System.out.println("EL CONTENIDO DE TARIFAS EN SEDE DESDE TARIFA ES"+tarifas3.length);
-        for(Tarifa e:tarifas3){
+       /* for(Tarifa e:tarifas3){
 
-            System.out.println("La fecha Fin de Vigencia TODAS TARIFAS EN SEDE 3: "+e.getFechaFinVigencia()+"\n"+"La Fecha inicio Vigencia es: "+e.getFechaInicioVigencia()+"\n"+"El Monto es: "+e.getMonto()+"\n"+"El Monto Adicional por Guia es: "+e.getMontoAdicionaGuia()+"\n"+"El tipo de entrada es: "+e.getTipoDeEntrada().getNombre()+"\n"+"El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
+            //System.out.println("La fecha Fin de Vigencia TODAS TARIFAS EN SEDE 3: "+e.getFechaFinVigencia()+"\n"+"La Fecha inicio Vigencia es: "+e.getFechaInicioVigencia()+"\n"+"El Monto es: "+e.getMonto()+"\n"+"El Monto Adicional por Guia es: "+e.getMontoAdicionaGuia()+"\n"+"El tipo de entrada es: "+e.getTipoDeEntrada().getNombre()+"\n"+"El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
 
-        }
+        }*/
 
         return tarifas3;
     }
