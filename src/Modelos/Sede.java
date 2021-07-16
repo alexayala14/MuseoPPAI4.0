@@ -164,7 +164,7 @@ public class Sede{
 
 
         //hoy=LocalDate.now();
-        hoy=LocalDate.of(2021,3,20);
+        hoy=LocalDate.of(2021,8,21);
         //tarifas3=new Tarifa[tarifas.length];
         List<Tarifa> list=new ArrayList<>();
         for(Tarifa e:tarifas){

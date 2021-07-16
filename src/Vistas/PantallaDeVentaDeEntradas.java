@@ -1,14 +1,18 @@
 package Vistas;
 
+import Modelos.Tarifa;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PantallaDeVentaDeEntradas extends JFrame{
-    public JComboBox comboBoxTarifas;
+    public  JComboBox comboBoxTarifas;
     public JButton buttonRegistrarVenta;
     private JPanel panel1;
     private JSpinner spinner1;
+    public static Tarifa[] tarifas;
+    public static String pepito2;
 
     public PantallaDeVentaDeEntradas(){
         super("Registrar Venta de Entrada");
@@ -33,6 +37,29 @@ public class PantallaDeVentaDeEntradas extends JFrame{
 
             }
         });
+        /*String pepito="pepito1";
+        comboBoxTarifas.addItem(pepito);*/
+        System.out.println("lA CANTIDAD DE ELEMTOS EN PANTALLA ES "+tarifas.length);
+            for (Tarifa e:tarifas){
+                comboBoxTarifas.addItem(e.getTipoVisita().getNombre()+" "+e.getTipoDeEntrada().getNombre()+" "+e.getMonto()+" "+e.getMontoAdicionaGuia());
+                System.out.println("ACA VA LA INFO DESDE ṔANTALLA"+e.getTipoVisita().getNombre()+" "+e.getTipoDeEntrada().getNombre()+" "+e.getMonto()+" "+e.getMontoAdicionaGuia());
+            }
+            //comboBoxTarifas.addItem(tarifas);
+       // comboBoxTarifas.addItem(mostrarTarifas());
+
+    }
+    public static Tarifa[] mostrarTarifas(Tarifa[] tarifas1){
+        //String pepito="pepito1";
+        tarifas=tarifas1;
+
+        for (Tarifa e: tarifas){
+            System.out.println("Es la tarifa desde la pantalla"+e.getTipoDeEntrada()+" "+e.getTipoVisita());
+            //comboBoxTarifas.addItem(e.getTipoVisita());
+            pepito2=e.getTipoVisita().getNombre();
+        }
+        //comboBoxTarifas.addItem(pepito);
+        /*return pepito;*/
+        return tarifas;
     }
 
 

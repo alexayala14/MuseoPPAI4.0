@@ -138,8 +138,7 @@ class GestorDeVentaDeEntradas implements ActionListener {
 
         }
 
-
-
+        PantallaDeVentaDeEntradas.mostrarTarifas(tarifas2);
 
         return tarifas2;
     }
