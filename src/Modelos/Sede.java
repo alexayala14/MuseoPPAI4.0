@@ -26,6 +26,10 @@ public class Sede{
     public Sede() {
     }
 
+    public Sede(String nombre) {
+        this.nombre = nombre;
+    }
+
     public Sede(int cantMaximaVisitantes, int cantMaxPorGuia, String nombre, Tarifa[] tarifas, Exposicion[] exposicions, HorarioSede[] horarioSedes, Planta[] plantas, Empleado[] empleados, Coleccion[] coleccions, Deposito deposito) {
         this.cantMaximaVisitantes = cantMaximaVisitantes;
         this.cantMaxPorGuia = cantMaxPorGuia;
@@ -37,6 +41,13 @@ public class Sede{
         this.empleados = empleados;
         this.coleccions = coleccions;
         this.deposito = deposito;
+    }
+
+    public Sede(int cantMaximaVisitantes, int cantMaxPorGuia, String nombre, Tarifa[] tarifas) {
+        this.cantMaximaVisitantes = cantMaximaVisitantes;
+        this.cantMaxPorGuia = cantMaxPorGuia;
+        this.nombre = nombre;
+        this.tarifas = tarifas;
     }
 
     public int getCantMaximaVisitantes() {
@@ -157,7 +168,7 @@ public class Sede{
 
     }
 */
-    public static Tarifa[] conocerTarifa(){
+    public  Tarifa[] conocerTarifa(){
         System.out.println();
         Tarifa[] tarifas;
         tarifas=Tarifa.conocerTarifa();
