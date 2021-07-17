@@ -21,7 +21,7 @@ class GestorDeVentaDeEntradas implements ActionListener {
     private PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas;
     private PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas;
     private static Tarifa[] tarifas;
-    private Sede sede1;
+    private Sede sede;
 
     public GestorDeVentaDeEntradas(Tarifa tarifa1, PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas, PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas, Sede sede) {
         this.tarifa1 = tarifa1;
@@ -49,7 +49,7 @@ class GestorDeVentaDeEntradas implements ActionListener {
         tarifas[2]=new Tarifa(LocalDate.of(2021,3,22),LocalDate.of(2021,3,20),70,10,tipoDeEntradas[2],tipoVisitas[2]);
         tarifas[3]=new Tarifa(LocalDate.of(2021,2,22),LocalDate.of(2021,2,20),80,15,tipoDeEntradas[3],tipoVisitas[3]);
 
-        this.sede1 = new Sede(50,50,"PEPE",tarifas);
+        this.sede = new Sede(50,50,"PEPE",tarifas);
 
     }
 
@@ -75,7 +75,7 @@ class GestorDeVentaDeEntradas implements ActionListener {
         tarifas[2]=new Tarifa(LocalDate.of(2021,3,22),LocalDate.of(2021,3,20),70,10,tipoDeEntradas[2],tipoVisitas[2]);
         tarifas[3]=new Tarifa(LocalDate.of(2021,2,22),LocalDate.of(2021,2,20),80,15,tipoDeEntradas[3],tipoVisitas[3]);
 
-        this.sede1 = new Sede(50,50,"PEPE",tarifas);
+        this.sede = new Sede(50,50,"PEPE",tarifas);
     }
 
     /*public GestorDeVentaDeEntradas(Tarifa tarifa1, PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas, PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas, Tarifa[] tarifas) {
@@ -107,8 +107,9 @@ class GestorDeVentaDeEntradas implements ActionListener {
             @Override
             public void run() {
                 JFrame jFrame=new PantallaRegistrarVentaDeEntradas();
-                jFrame.setSize(900,900);
+                jFrame.setSize(1200,1200);
                 jFrame.setVisible(true);
+
             }
         });
         GestorDeVentaDeEntradas gestorDeVentaDeEntradas=new GestorDeVentaDeEntradas();
@@ -190,7 +191,7 @@ class GestorDeVentaDeEntradas implements ActionListener {
         Tarifa[] tarifas2;
         //tarifas2= Sede.conocerTarifa();
 
-        tarifas2 = this.sede1.conocerTarifa();
+        tarifas2 = this.sede.conocerTarifa();
         for(Tarifa e:tarifas2){
             System.out.println("La fecha Fin de Vigencia DE TARIFA 2: "+e.getFechaFinVigencia()+"\n"+"La Fecha inicio Vigencia es: "+e.getFechaInicioVigencia()+"\n"+"El Monto es: "+e.getMonto()+"\n"+"El Monto Adicional por Guia es: "+e.getMontoAdicionaGuia()+"\n"+"El tipo de entrada es: "+e.getTipoDeEntrada().getNombre()+"\n"+"El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
 

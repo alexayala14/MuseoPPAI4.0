@@ -11,11 +11,15 @@ public class PantallaDeVentaDeEntradas extends JFrame{
     public JButton buttonRegistrarVenta;
     private JPanel panel1;
     private JSpinner spinner1;
+    private JButton agregarButton;
+    private JTextArea textArea1;
     public static Tarifa[] tarifas;
     public static String pepito2;
 
+
     public PantallaDeVentaDeEntradas(){
         super("Registrar Venta de Entrada");
+
         setContentPane(panel1);
         buttonRegistrarVenta.addActionListener(new ActionListener() {
             @Override
@@ -37,11 +41,30 @@ public class PantallaDeVentaDeEntradas extends JFrame{
 
             }
         });
+
+        //boton agregar entradas
+
+        agregarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //list1.add("Prueba",comboBoxTarifas).getBounds();
+
+                int i = comboBoxTarifas.getSelectedIndex();
+                String contenido = comboBoxTarifas.getSelectedItem().toString();
+                String contenidospinner = spinner1.getValue().toString();
+                System.out.println("ESTE ES EL INDICE DEL COMBOBOX: "+i);
+                System.out.println("ESTE ES EL CONTENIDO DEL COMBOBOX: "+contenido);
+                System.out.println("ESTE ES EL CONTENIDO DE ENTRADAS: "+contenidospinner);
+                textArea1.setText(contenido+" "+"Cantidad:"+contenidospinner);
+            }
+        });
+
+
         /*String pepito="pepito1";
         comboBoxTarifas.addItem(pepito);*/
         System.out.println("lA CANTIDAD DE ELEMTOS EN PANTALLA ES "+tarifas.length);
             for (Tarifa e:tarifas){
-                comboBoxTarifas.addItem(e.getTipoVisita().getNombre()+" "+e.getTipoDeEntrada().getNombre()+" "+e.getMonto()+" "+e.getMontoAdicionaGuia());
+                comboBoxTarifas.addItem("Tipo Visita:"+e.getTipoVisita().getNombre()+" "+"Tipo Entrada:"+e.getTipoDeEntrada().getNombre()+" "+"Monto:"+e.getMonto()+" "+"Monto Adicional:"+e.getMontoAdicionaGuia());
                 System.out.println("ACA VA LA INFO DESDE ṔANTALLA"+e.getTipoVisita().getNombre()+" "+e.getTipoDeEntrada().getNombre()+" "+e.getMonto()+" "+e.getMontoAdicionaGuia());
             }
             //comboBoxTarifas.addItem(tarifas);
@@ -63,4 +86,9 @@ public class PantallaDeVentaDeEntradas extends JFrame{
     }
 
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        SpinnerModel sm = new SpinnerNumberModel(0, 0, 1000, 1);
+        spinner1=new JSpinner(sm);
+    }
 }
