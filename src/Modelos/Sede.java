@@ -1,6 +1,7 @@
 package Modelos;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +20,7 @@ public class Sede{
     public static Tarifa[] tarifas3;
     public static LocalDate hoy;
     public static int i=0;
+    private LocalTime duracion;
 
 
 
@@ -43,11 +45,12 @@ public class Sede{
         this.deposito = deposito;
     }
 
-    public Sede(int cantMaximaVisitantes, int cantMaxPorGuia, String nombre, Tarifa[] tarifas) {
+    public Sede(int cantMaximaVisitantes, int cantMaxPorGuia, String nombre, Tarifa[] tarifas, Exposicion[] exposicions) {
         this.cantMaximaVisitantes = cantMaximaVisitantes;
         this.cantMaxPorGuia = cantMaxPorGuia;
         this.nombre = nombre;
         this.tarifas = tarifas;
+        this.exposicions = exposicions;
     }
 
     public int getCantMaximaVisitantes() {
@@ -197,5 +200,12 @@ public class Sede{
         }*/
 
         return tarifas3;
+    }
+
+    public LocalTime getDuracion(){
+        Exposicion[] exposicions;
+        exposicions= this.exposicions.
+        return duracion;
+
     }
 }

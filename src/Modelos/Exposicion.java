@@ -137,4 +137,10 @@ public class Exposicion {
                 ", empleados=" + Arrays.toString(empleados) +
                 '}';
     }
+
+    public static Exposicion[] conocerExposisiones(){
+        Exposicion[] exposiciones=new Exposicion[4];
+        exposiciones[0]=new Exposicion(LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),"La numero 1",TipoExposicion("Tipo1","nombre"))
+        return  exposiciones;
+    }
 }

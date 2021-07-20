@@ -191,6 +191,7 @@ class GestorDeVentaDeEntradas implements ActionListener {
         Tarifa[] tarifas2;
         //tarifas2= Sede.conocerTarifa();
 
+        //ES EL METODO QUE FUNCIONA OK
         tarifas2 = this.sede.conocerTarifa();
         for(Tarifa e:tarifas2){
             System.out.println("La fecha Fin de Vigencia DE TARIFA 2: "+e.getFechaFinVigencia()+"\n"+"La Fecha inicio Vigencia es: "+e.getFechaInicioVigencia()+"\n"+"El Monto es: "+e.getMonto()+"\n"+"El Monto Adicional por Guia es: "+e.getMontoAdicionaGuia()+"\n"+"El tipo de entrada es: "+e.getTipoDeEntrada().getNombre()+"\n"+"El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
@@ -228,6 +229,7 @@ class GestorDeVentaDeEntradas implements ActionListener {
        /* Exposicion[] exposicions=new Exposicion[4];
         exposicions[0]=new Exposicion(LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22), LocalTime.of(2,15,00),LocalTime.of(02,15,00),"Renacimiento",ArrayList<DetalleExposicion>detalleExposicion[0]);
 */
+        this.sede
     }
 
     public static void tomarSeleccionDeEntradas(Tarifa[] tarifas){
