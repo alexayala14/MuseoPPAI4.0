@@ -9,8 +9,8 @@ public class Tarifa {
     LocalDate fechaInicioVigencia;
     float monto;
     float montoAdicionaGuia;
-    TipoDeEntrada tipoDeEntrada = new TipoDeEntrada();
-    TipoVisita tipoVisita=new TipoVisita();
+    TipoDeEntrada tipoDeEntrada; /*= new TipoDeEntrada();*/
+    TipoVisita tipoVisita; /*=new TipoVisita();*/
     Tarifa[] tarifas;
 
 

@@ -15,6 +15,7 @@ public class Exposicion {
     private DetalleExposicion1[] detalleExposicions;
     private PublicoDestino[] publicoDestinos;
     private Empleado[] empleados;
+    private boolean esVigente=false;
 
     public Exposicion() {
     }
@@ -138,9 +139,16 @@ public class Exposicion {
                 '}';
     }
 
-    public static Exposicion[] conocerExposisiones(){
+    public  Exposicion[] conocerExposisiones(){
         Exposicion[] exposiciones=new Exposicion[4];
-        exposiciones[0]=new Exposicion(LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),"La numero 1",TipoExposicion("Tipo1","nombre"))
+       // exposiciones[0]=new Exposicion(LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),"La numero 1",TipoExposicion("Tipo1","nombre"))
         return  exposiciones;
+    }
+
+    public Boolean esVigente(LocalDate localDate,LocalDate localDate1){
+        /*if(//va condiciones de vigencia){
+            this.esVigente=true;
+        }*/
+     return this.esVigente;
     }
 }

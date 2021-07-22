@@ -11,7 +11,7 @@ public class Sede{
     private int cantMaxPorGuia;
     private String nombre;
     public Tarifa[] tarifas;
-    private Exposicion[] exposicions;
+    private Exposicion[] exposiciones;
     private HorarioSede[] horarioSedes;
     private Planta[] plantas;
     private Empleado[] empleados;
@@ -37,7 +37,7 @@ public class Sede{
         this.cantMaxPorGuia = cantMaxPorGuia;
         this.nombre = nombre;
         this.tarifas = tarifas;
-        this.exposicions = exposicions;
+        this.exposiciones = exposicions;
         this.horarioSedes = horarioSedes;
         this.plantas = plantas;
         this.empleados = empleados;
@@ -50,7 +50,11 @@ public class Sede{
         this.cantMaxPorGuia = cantMaxPorGuia;
         this.nombre = nombre;
         this.tarifas = tarifas;
-        this.exposicions = exposicions;
+        this.exposiciones = exposicions;
+    }
+
+    public Sede(int i, int i1, String pepe, Tarifa[] tarifas) {
+       // this.exposiciones= falta completar
     }
 
     public int getCantMaximaVisitantes() {
@@ -86,11 +90,11 @@ public class Sede{
     }
 
     public Exposicion[] getExposicions() {
-        return exposicions;
+        return exposiciones;
     }
 
     public void setExposicions(Exposicion[] exposicions) {
-        this.exposicions = exposicions;
+        this.exposiciones = exposicions;
     }
 
     public HorarioSede[] getHorarioSedes() {
@@ -140,7 +144,7 @@ public class Sede{
                 ", cantMaxPorGuia=" + cantMaxPorGuia +
                 ", nombre='" + nombre + '\'' +
                 ", tarifas=" + Arrays.toString(tarifas) +
-                ", exposicions=" + Arrays.toString(exposicions) +
+                ", exposicions=" + Arrays.toString(exposiciones) +
                 ", horarioSedes=" + Arrays.toString(horarioSedes) +
                 ", plantas=" + Arrays.toString(plantas) +
                 ", empleados=" + Arrays.toString(empleados) +
@@ -201,11 +205,18 @@ public class Sede{
 
         return tarifas3;
     }
+    public Exposicion[] conocerExposision(){
 
+        return this.exposiciones;
+    }
     public LocalTime getDuracion(){
-        Exposicion[] exposicions;
-        exposicions= this.exposicions.
-        return duracion;
+
+        //exposicions= this.exposicions.
+        //this.duracion=
+        for(Exposicion e:this.conocerExposision()){
+            //e.es falta completar
+        }
+        return this.duracion;
 
     }
 }
