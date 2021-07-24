@@ -24,6 +24,7 @@ class GestorDeVentaDeEntradas implements ActionListener {
     private boolean esMenorCantidad=false;
     //private static Tarifa[] tarifas;
     private Sede sede;
+    private Sede[] sedes;
     private ReservaVisita[] reservasVisita;
 
   /*  public GestorDeVentaDeEntradas(Tarifa tarifa1, PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas, PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas, Sede sede) {
@@ -78,12 +79,6 @@ class GestorDeVentaDeEntradas implements ActionListener {
         tarifas[2]=new Tarifa(LocalDate.of(2021,3,22),LocalDate.of(2021,3,20),70,10,tipoDeEntradas[2],tipoVisitas[2]);
         tarifas[3]=new Tarifa(LocalDate.of(2021,2,22),LocalDate.of(2021,2,20),80,15,tipoDeEntradas[3],tipoVisitas[3]);
 
-        this.sede = new Sede(50,50,"PEPE",tarifas);
-        Sede[] sedes = new Sede[4];
-        sedes[0]=new Sede(50,50,"PEPE",tarifas);
-        sedes[1]=new Sede(50,50,"Jose",tarifas);
-        sedes[2]=new Sede(50,50,"Alberto",tarifas);
-        sedes[3]=new Sede(50,50,"Dario",tarifas);
 
         TipoExposicion[] tipoExposicion = new TipoExposicion[4];
         tipoExposicion[0]= new TipoExposicion("Primer Tipo","Nombre1");
@@ -203,12 +198,18 @@ class GestorDeVentaDeEntradas implements ActionListener {
         AsignacionVisita[] asignacionVisitas=new AsignacionVisita[2];
         asignacionVisitas[0]=new AsignacionVisita(LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),empleados[0]);
         asignacionVisitas[1]=new AsignacionVisita(LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),empleados[0]);
+        this.sede = new Sede(50,50,"PEPE",tarifas);
+        this.sedes = new Sede[4];
+        sedes[0]=new Sede(50,50,"PEPE",tarifas);
+        sedes[1]=new Sede(50,50,"Jose",tarifas);
+        sedes[2]=new Sede(50,50,"Alberto",tarifas);
+        sedes[3]=new Sede(50,50,"Dario",tarifas);
 
         this.reservasVisita = new ReservaVisita[4];
         reservasVisita[0]=new ReservaVisita(20,40,LocalTime.now(),LocalDate.of(2021,7,20),LocalDate.of(2021,7,20),LocalTime.of(2,10),LocalTime.of(17,10),1,exposiciones,sedes[0],escuelas[0],cambioDeEstados,asignacionVisitas);
-        reservasVisita[1]=new ReservaVisita(20,40,LocalTime.now(),LocalDate.of(2021,7,20),LocalDate.of(2021,7,20),LocalTime.of(2,10),LocalTime.of(17,10),1,exposiciones,sedes[1],escuelas[0],cambioDeEstados,asignacionVisitas);
-        reservasVisita[2]=new ReservaVisita(20,40,LocalTime.now(),LocalDate.of(2021,7,20),LocalDate.of(2021,7,20),LocalTime.of(2,10),LocalTime.of(17,10),1,exposiciones,sedes[2],escuelas[0],cambioDeEstados,asignacionVisitas);
-        reservasVisita[3]=new ReservaVisita(20,40,LocalTime.now(),LocalDate.of(2021,7,20),LocalDate.of(2021,7,20),LocalTime.of(2,10),LocalTime.of(17,10),1,exposiciones,sedes[3],escuelas[0],cambioDeEstados,asignacionVisitas);
+        reservasVisita[1]=new ReservaVisita(20,40,LocalTime.now(),LocalDate.of(2021,7,20),LocalDate.of(2021,7,20),LocalTime.of(2,10),LocalTime.of(17,10),2,exposiciones,sedes[1],escuelas[0],cambioDeEstados,asignacionVisitas);
+        reservasVisita[2]=new ReservaVisita(20,40,LocalTime.now(),LocalDate.of(2021,7,20),LocalDate.of(2021,7,20),LocalTime.of(2,10),LocalTime.of(17,10),3,exposiciones,sedes[2],escuelas[0],cambioDeEstados,asignacionVisitas);
+        reservasVisita[3]=new ReservaVisita(20,40,LocalTime.now(),LocalDate.of(2021,7,20),LocalDate.of(2021,7,20),LocalTime.of(2,10),LocalTime.of(17,10),4,exposiciones,sedes[3],escuelas[0],cambioDeEstados,asignacionVisitas);
 
     }
 
@@ -373,8 +374,11 @@ class GestorDeVentaDeEntradas implements ActionListener {
 
     }
     public void validarCantidadDeEntradas(int cantidadDeEntradas){
+
         for(ReservaVisita e:this.reservasVisita){
-            if(e.esSedeActual(this.sede)){
+           // System.out.println("DATOS DE LA RESERVA EN GESTOR"+ e.getNumeroReserva());
+            System.out.println("LA SEDE EN GESTOR ESSSss: "+this.sedes[0]);
+            if(e.esSedeActual(this.sedes[0])){
                 System.out.println("ES LA SEDEEEEEEEE EN GESTOR: "+e.getSede().getNombre());
             }
         }

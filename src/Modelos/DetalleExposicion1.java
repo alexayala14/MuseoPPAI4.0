@@ -58,7 +58,7 @@ public class DetalleExposicion1 {
 
     public float sumarDuracionResumida(){
         this.sumaDuracion=this.sumaDuracion+this.obra.getDuracionResumida();
-        System.out.println("\n\nLA SUMA ES EN DETALLE"+sumaDuracion);
+        //System.out.println("\n\nLA SUMA ES EN DETALLE"+sumaDuracion);
         return this.sumaDuracion;
 
     }
