@@ -20,7 +20,7 @@ public class Sede{
     public static Tarifa[] tarifas3;
     public static LocalDate hoy;
     public static int i=0;
-    private LocalTime duracion;
+    private float duracion;
 
 
 
@@ -206,17 +206,31 @@ public class Sede{
         return tarifas3;
     }
     public Exposicion[] conocerExposision(){
-
+        exposiciones=Exposicion.conocerExposisiones();
         return this.exposiciones;
     }
-    public LocalTime getDuracion(){
+    public float getDuracion(){
 
         //exposicions= this.exposicions.
         //this.duracion=
-        for(Exposicion e:this.conocerExposision()){
+        List<Exposicion> list=new ArrayList<>();
+        //DetalleExposicion1[] detalleExposicion1s=new DetalleExposicion1[8];
+        for(Exposicion e: this.conocerExposision()){
             //e.es falta completar
+            System.out.println("ENTRA POR ACA LAS EXPOSICIONES"+e.getNombre());
+            //float duracion;
+            if(e.esVigente(e.getFechaInicio(),e.getFechaFin())) {
+                list.add(e);
+                duracion= e.getDuracion();
+                System.out.printf("DURACIONNNNN"+duracion);
+                System.out.println("ES VIGENTE "+e.getNombre());
+            }
         }
-        return this.duracion;
+        System.out.println("LA CANTIDAD LISTA DURACION ESSSSS"+list.size());
+
+        return duracion;
 
     }
+
+
 }

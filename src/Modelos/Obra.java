@@ -102,10 +102,9 @@ public class Obra{
     public void setDuracionExtendida(float duracionExtendida) {
         this.duracionExtendida = duracionExtendida;
     }
-
-    public float getDuracionResumida() {
+    /*public float getDuracionResumida() {
         return duracionResumida;
-    }
+    }*/
 
     public void setDuracionResumida(float duracionResumida) {
         this.duracionResumida = duracionResumida;
@@ -283,6 +282,11 @@ public class Obra{
                 ", donacions=" + Arrays.toString(donacions) +
                 ", prestamoAMuseos=" + Arrays.toString(prestamoAMuseos) +
                 '}';
+    }
+
+    public float getDuracionResumida(){
+
+        return this.duracionResumida;
     }
 
     /* conocerArtista(){}

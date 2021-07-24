@@ -20,6 +20,7 @@ public class ReservaVisita{
     private Escuela escuela;
     private CambioDeEstado[] cambioDeEstados;
     private AsignacionVisita[] asignacionVisitas;
+    private boolean esSedeActual=false;
 
 
 
@@ -168,7 +169,19 @@ public class ReservaVisita{
     /*conocerAsignacionGuia(){}
     conocerCambioEstado(){}
     conocerEmpleado(){}
-    conocerExposicion(){}
-    concoerSede(){}*/
+    conocerExposicion(){}*/
+    public boolean esSedeActual(Sede sede) {
+        if(this.getSede().getNombre().equals(sede.getNombre())){
+            this.esSedeActual=true;
+        }else {
+            this.esSedeActual=false;
+        }
+        return this.esSedeActual;
+    }
+
+    public void validaHorario(){
+
+    }
+
 
 }

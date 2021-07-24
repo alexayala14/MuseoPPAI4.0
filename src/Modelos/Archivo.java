@@ -7,6 +7,11 @@ public class Archivo {
     public Archivo() {
     }
 
+    public Archivo(String nombre, String ubicacion) {
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
+    }
+
     public String getNombre() {
         return nombre;
     }
