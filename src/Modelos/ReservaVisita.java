@@ -200,17 +200,27 @@ public class ReservaVisita{
     conocerEmpleado(){}
     conocerExposicion(){}*/
     public boolean esSedeActual(Sede sede) {
-        System.out.println("EN RESERVA ESSSSSS: "+sede.getNombre());
+//        System.out.println("EN RESERVA ESSSSSS: "+sede.getNombre());
         if(this.getSede().getNombre().equals(sede.getNombre())){
+            System.out.println("EN RESERVA ESSSSSS: "+sede.getNombre());
             this.esSedeActual=true;
+            System.out.println("esSedeActual: "+this.esSedeActual);
         }else {
             this.esSedeActual=false;
+//            System.out.println("esSedeActual: "+this.esSedeActual);
         }
         return this.esSedeActual;
     }
 
-    public void validaHorario(){
-
+    public boolean validaHorario(LocalTime horaInicioReal, LocalTime horaFinReal){
+        LocalTime ahora = LocalTime.of(21,0,0);
+        boolean horarioValido = false;
+        if((ahora.isBefore(horaFinReal) || ahora.equals(horaFinReal)) && (ahora.isAfter(horaInicioReal) ||ahora.equals(horaInicioReal))){
+            horarioValido = true;
+        } else {
+            horarioValido = false;
+        }
+        return horarioValido;
     }
 
 

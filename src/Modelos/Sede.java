@@ -22,40 +22,31 @@ public class Sede{
     public static int i=0;
     private float duracion;
 
-
-
-
     public Sede() {
     }
 
+//    public Sede(int cantMaximaVisitantes, int cantMaxPorGuia, String nombre, Tarifa[] tarifas, Exposicion[] exposicions, HorarioSede[] horarioSedes, Planta[] plantas, Empleado[] empleados, Coleccion[] coleccions, Deposito deposito) {
+//        this.cantMaximaVisitantes = cantMaximaVisitantes;
+//        this.cantMaxPorGuia = cantMaxPorGuia;
+//        this.nombre = nombre;
+//        this.tarifas = tarifas;
+//        this.exposiciones = exposicions;
+//        this.horarioSedes = horarioSedes;
+//        this.plantas = plantas;
+//        this.empleados = empleados;
+//        this.coleccions = coleccions;
+//        this.deposito = deposito;
+//    }
 
+//    public Sede(int cantMaximaVisitantes, int cantMaxPorGuia, String nombre, Tarifa[] tarifas, Exposicion[] exposicions) {
+//        this.cantMaximaVisitantes = cantMaximaVisitantes;
+//        this.cantMaxPorGuia = cantMaxPorGuia;
+//        this.nombre = nombre;
+//        this.tarifas = tarifas;
+//        this.exposiciones = exposicions;
+//    }
 
-    public Sede(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Sede(int cantMaximaVisitantes, int cantMaxPorGuia, String nombre, Tarifa[] tarifas, Exposicion[] exposicions, HorarioSede[] horarioSedes, Planta[] plantas, Empleado[] empleados, Coleccion[] coleccions, Deposito deposito) {
-        this.cantMaximaVisitantes = cantMaximaVisitantes;
-        this.cantMaxPorGuia = cantMaxPorGuia;
-        this.nombre = nombre;
-        this.tarifas = tarifas;
-        this.exposiciones = exposicions;
-        this.horarioSedes = horarioSedes;
-        this.plantas = plantas;
-        this.empleados = empleados;
-        this.coleccions = coleccions;
-        this.deposito = deposito;
-    }
-
-    public Sede(int cantMaximaVisitantes, int cantMaxPorGuia, String nombre, Tarifa[] tarifas, Exposicion[] exposicions) {
-        this.cantMaximaVisitantes = cantMaximaVisitantes;
-        this.cantMaxPorGuia = cantMaxPorGuia;
-        this.nombre = nombre;
-        this.tarifas = tarifas;
-        this.exposiciones = exposicions;
-    }
-
-    public Sede(int i, int i1, String pepe, Tarifa[] tarifas) {
+    public Sede(int cantMaxVis, int cantMaxPorGuia, String pepe, Tarifa[] tarifas) {
        // this.exposiciones= falta completar
         /*TipoVisita[] tipoVisitas=new TipoVisita[4];
         tipoVisitas[0]=new TipoVisita("Exposicion");
@@ -84,6 +75,19 @@ public class Sede{
         sedes[1]=new Sede(50,50,"Jose",tarifas);
         sedes[2]=new Sede(50,50,"Alberto",tarifas);
         sedes[3]=new Sede(50,50,"Dario",tarifas);*/
+    }
+
+    public Sede(int cantMaximaVisitantes, int cantMaxPorGuia, String nombre, Tarifa[] tarifas, Exposicion[] exposiciones, HorarioSede[] horarioSedes, Planta[] plantas, Empleado[] empleados, Coleccion[] colecciones, Deposito deposito, Tarifa[] tarifas1) {
+        this.cantMaximaVisitantes = cantMaximaVisitantes;
+        this.cantMaxPorGuia = cantMaxPorGuia;
+        this.nombre = nombre;
+        this.tarifas = tarifas;
+        this.exposiciones = exposiciones;
+        this.horarioSedes = horarioSedes;
+        this.plantas = plantas;
+        this.empleados = empleados;
+        this.coleccions = colecciones;
+        this.deposito = deposito;
     }
 
     public int getCantMaximaVisitantes() {
