@@ -37,6 +37,4 @@ public class Donacion {
                 ", donador=" + donador +
                 '}';
     }
-
-    //conocerDonador();
 }

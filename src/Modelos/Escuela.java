@@ -68,6 +68,4 @@ public class Escuela{
                 ", teleFijo='" + teleFijo + '\'' +
                 '}';
     }
-
-    //mostrarNombre();
 }

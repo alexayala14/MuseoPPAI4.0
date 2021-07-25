@@ -288,19 +288,4 @@ public class Obra{
 
         return this.duracionResumida;
     }
-
-    /* conocerArtista(){}
-    concerCambioEstado(){}
-    conocerCompra(){}
-    conocerDonacion(){}
-    conocerEmpleado(){}
-    conocerEstilo(){}
-    conocerPrestamo(){}
-    conocerPrestamoAMuseo(){}
-    conocerRestauracion(){}
-    conocerSectorAsignado(){}
-    conocerTecnica(){}
-    conocerTematica(){}
-    conocerTipoIngreso(){}
-    crearCambioEstado(){}*/
 }

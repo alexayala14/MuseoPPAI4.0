@@ -141,7 +141,7 @@ public class Exposicion {
                 '}';
     }
 
-    public static Exposicion[] conocerExposisiones(){
+    public static Exposicion[] conocerExposiciones(){
         TipoExposicion[] tipoExposicion = new TipoExposicion[4];
         tipoExposicion[0]= new TipoExposicion("Primer Tipo","Nombre1");
         tipoExposicion[1]= new TipoExposicion("Segundo Tipo","Nombre2");
@@ -258,15 +258,10 @@ public class Exposicion {
 
     public Boolean esVigente(LocalDate fechaInicio,LocalDate fechaFin){
         hoy=LocalDate.of(2021,7,23);
-       // System.out.println("ES HOY EN VIGENTE"+hoy);
-        //System.out.println("lOS LOCATE DEN VIGENTE: "+fechaFin+"FECHA INICIO "+fechaInicio);
         if((hoy.isBefore(this.fechaFin)||hoy.equals(fechaFin)) && (hoy.isAfter(this.fechaInicio)||hoy.equals(fechaInicio))){
             this.esVigente=true;
-           // System.out.printf("ESTOY EN VIGENTE"+this.esVigente);
         }else {
             this.esVigente=false;
-            //System.out.printf("ESTOY EN NO VIGENTE"+this.esVigente);
-
         }
      return this.esVigente;
     }
@@ -275,7 +270,6 @@ public class Exposicion {
         float duracion=0;
         for(DetalleExposicion1 e:this.detalleExposicions) {
             duracion = duracion + e.sumarDuracionResumida();
-            //System.out.printf("ES EXPOSICION DURACION "+duracion);
         }
         return duracion;
     }

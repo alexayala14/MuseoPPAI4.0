@@ -26,11 +26,4 @@ public class Planta{
                 "numero=" + numero +
                 '}';
     }
-
-    /*conocerArchivo(){
-
-    }
-    conocerSala(){
-
-    }*/
 }

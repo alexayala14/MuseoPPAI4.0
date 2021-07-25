@@ -81,8 +81,4 @@ public class Restauracion {
                 ", tipoRestauracion=" + tipoRestauracion +
                 '}';
     }
-
-    //conocerRestaurador();
-    //conocerTipoRestauracion();
-
 }

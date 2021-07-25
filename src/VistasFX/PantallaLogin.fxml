@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="453.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VistasFX.PantallaDeVentaDeEntradas">
+   <children>
+      <ImageView fitHeight="241.0" fitWidth="247.0" layoutX="192.0" layoutY="-18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/icon.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="192.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
+      <TextField layoutX="192.0" layoutY="238.0" prefHeight="25.0" prefWidth="225.0" />
+      <Text layoutX="192.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
+      <TextField layoutX="192.0" layoutY="297.0" prefHeight="25.0" prefWidth="225.0" />
+      <Button layoutX="187.0" layoutY="332.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Registrarse" />
+      <Button layoutX="347.0" layoutY="332.0" mnemonicParsing="false" onAction="#switchToFirstScene" prefHeight="25.0" prefWidth="70.0" text="Ingresar" />
+      <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="192.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/google.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="221.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/facebook.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="252.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/instagram.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

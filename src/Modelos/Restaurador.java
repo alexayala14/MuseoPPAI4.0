@@ -70,6 +70,4 @@ public class Restaurador {
     public void setEspecialidadList(Especialidad[] especialidadList) {
         this.especialidadList = especialidadList;
     }
-
-    //conocerEspecialidad();
 }

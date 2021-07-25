@@ -49,6 +49,4 @@ public class HorarioSede {
                 ", diaSemanas=" + Arrays.toString(diaSemanas) +
                 '}';
     }
-
-    //conocerDiaSemana();
 }

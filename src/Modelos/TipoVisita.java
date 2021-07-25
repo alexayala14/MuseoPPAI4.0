@@ -18,8 +18,8 @@ public class TipoVisita{
         this.nombre = nombre;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "TipoVisita{" +
                 "nombre='" + nombre + '\'' +
                 '}';

@@ -48,7 +48,4 @@ public class CambioDeEstado {
                 ", estado=" + estado +
                 '}';
     }
-
-    //conocerEstado();
-    //new();
 }

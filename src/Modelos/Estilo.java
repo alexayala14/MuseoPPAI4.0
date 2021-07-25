@@ -35,6 +35,4 @@ public class Estilo {
                 ", nombre='" + nombre + '\'' +
                 '}';
     }
-
-    //mostrarNombre();
 }

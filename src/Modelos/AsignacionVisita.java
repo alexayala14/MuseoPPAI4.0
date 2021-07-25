@@ -49,6 +49,4 @@ public class AsignacionVisita {
                 ", empleado=" + empleado +
                 '}';
     }
-
-    //conocerEmpleado();
 }

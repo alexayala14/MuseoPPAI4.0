@@ -48,6 +48,4 @@ public class Sala {
                 ", pareds=" + Arrays.toString(pareds) +
                 '}';
     }
-
-    //calcLugarDisponible();
 }

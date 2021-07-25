@@ -101,23 +101,18 @@ public class Tarifa {
 
     @Override
     public String toString() {
-        return "Tarifa{" +
-                "fechaFinVigencia=" + fechaFinVigencia +
-                ", fechaInicioVigencia=" + fechaInicioVigencia +
-                ", monto=" + monto +
-                ", montoAdicionaGuia=" + montoAdicionaGuia +
-                ", tipoDeEntrada=" + tipoDeEntrada.nombre +
-                ", tipoVisita=" + tipoVisita.nombre +
-                '}';
+//        return "Tarifa{" +
+//                "fechaFinVigencia=" + fechaFinVigencia +
+//                ", fechaInicioVigencia=" + fechaInicioVigencia +
+//                ", monto=" + monto +
+//                ", montoAdicionaGuia=" + montoAdicionaGuia +
+//                ", tipoDeEntrada=" + tipoDeEntrada.nombre +
+//                ", tipoVisita=" + tipoVisita.nombre +
+//                '}';
+        return "Tipo de Entrada: " + tipoDeEntrada.nombre +
+                " - Tipo de Visita: " + tipoVisita.nombre;
     }
 
-/*conocerTipoEntrada(){
-
-    }
-
-    conocerTipoVisita(){
-
-    }*/
 
     public static Tarifa[] conocerTarifa(){
         //TIPOS DE VISITAS
@@ -141,7 +136,7 @@ public class Tarifa {
         tarifas[1]=new Tarifa(LocalDate.of(2021,8,22),LocalDate.of(2021,5,20),60,8,tipoDeEntradas[1],tipoVisitas[1]);
         tarifas[2]=new Tarifa(LocalDate.of(2021,3,22),LocalDate.of(2021,3,20),70,10,tipoDeEntradas[2],tipoVisitas[2]);
         tarifas[3]=new Tarifa(LocalDate.of(2021,2,22),LocalDate.of(2021,2,20),80,15,tipoDeEntradas[3],tipoVisitas[3]);
-        //System.out.println("ESTAMOS EN TARIFA"+tarifas.toString());
+
         return tarifas;
     }
 }

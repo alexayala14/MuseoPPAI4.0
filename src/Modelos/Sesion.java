@@ -71,6 +71,4 @@ public class Sesion {
                 ", usuario=" + usuario +
                 '}';
     }
-
-    //conocerUsuario;
 }

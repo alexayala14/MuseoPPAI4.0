@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VistasFX.PantallaDeVentaDeEntradas">
+    <children>
+        <TitledPane animated="false" layoutX="14.0" layoutY="15.0" prefHeight="195.0" prefWidth="766.0" text="Seleccione tarifa">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="756.0">
+                    <children>
+                        <Button layoutX="637.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="113.0" text="Agregar entrada" />
+                    <TextField fx:id="montoTextField" editable="false" layoutX="452.0" layoutY="31.0" prefHeight="25.0" prefWidth="130.0" />
+                    <Label layoutX="452.0" layoutY="7.0" prefHeight="17.0" prefWidth="101.0" text="Monto" />
+                    <TextField fx:id="montoAdicionalPorGuiaTextField" editable="false" layoutX="609.0" layoutY="31.0" prefHeight="25.0" prefWidth="141.0" />
+                    <Label layoutX="609.0" layoutY="7.0" prefHeight="17.0" prefWidth="130.0" text="Monto Adicional x Guía" />
+                    <Spinner fx:id="cantEntradasSpinner" layoutX="14.0" layoutY="92.0" />
+                    <Label layoutX="14.0" layoutY="70.0" prefHeight="17.0" prefWidth="130.0" text="Cantidad de Entradas" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </TitledPane>
+        <ComboBox fx:id="tiposEntradaVisitaCombo" layoutX="25.0" layoutY="70.0" prefHeight="25.0" prefWidth="429.0" promptText="Seleccione..." />
+        <Label layoutX="25.0" layoutY="46.0" prefHeight="17.0" prefWidth="101.0" text="Tarifa" />
+        <TreeTableView fx:id="listadoEntradas" layoutX="14.0" layoutY="221.0" prefHeight="243.0" prefWidth="766.0">
+            <columns>
+                <TreeTableColumn prefWidth="154.0" text="Tipo de Entrada" />
+                <TreeTableColumn prefWidth="162.0" text="Tipo de Visita" />
+                <TreeTableColumn minWidth="1.0" prefWidth="63.0" text="Monto" />
+                <TreeTableColumn minWidth="0.0" prefWidth="140.0" text="Cantidad de Entradas" />
+                <TreeTableColumn prefWidth="182.0" text="Monto adicional Por Guía" />
+            </columns>
+        </TreeTableView>
+        <Button layoutX="666.0" layoutY="467.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="Registrar entradas" />
+        <Button layoutX="14.0" layoutY="467.0" mnemonicParsing="false" onAction="#switchToFirstScene" prefHeight="25.0" prefWidth="84.0" text="Atrás" />
+    </children>
+</AnchorPane>

@@ -40,6 +40,4 @@ public class Deposito {
                 ", sectorDepositos=" + Arrays.toString(sectorDepositos) +
                 '}';
     }
-
-    //conocerSectorDeposito();
 }

@@ -79,7 +79,4 @@ public class Artista {
                 ", telefono='" + telefono + '\'' +
                 '}';
     }
-
-    //mostrarNombre();
-    //mostrarApellido();
 }

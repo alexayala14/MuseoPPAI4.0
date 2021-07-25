@@ -48,6 +48,4 @@ public class Subcoleccion {
                 ", obras=" + Arrays.toString(obras) +
                 '}';
     }
-
-    //conocerObra();
 }

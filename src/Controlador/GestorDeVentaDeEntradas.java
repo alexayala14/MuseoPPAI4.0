@@ -13,7 +13,7 @@ import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.*;
 
-class GestorDeVentaDeEntradas implements ActionListener {
+public class GestorDeVentaDeEntradas implements ActionListener {
 
     public LocalDate fechaHoy = LocalDate.now();
     public LocalTime horaHoy = LocalTime.now();
@@ -27,38 +27,12 @@ class GestorDeVentaDeEntradas implements ActionListener {
     private Sede[] sedes;
     private ReservaVisita[] reservasVisita;
     private Entrada[] entradasACrear;
-
-  /*  public GestorDeVentaDeEntradas(Tarifa tarifa1, PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas, PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas, Sede sede) {
-        this.tarifa1 = tarifa1;
-        this.pantallaDeVentaDeEntradas = pantallaDeVentaDeEntradas;
-        this.pantallaRegistrarVentaDeEntradas = pantallaRegistrarVentaDeEntradas;
-
-       *//* TipoVisita[] tipoVisitas=new TipoVisita[4];
-        tipoVisitas[0]=new TipoVisita("Exposicion");
-        tipoVisitas[1]=new TipoVisita("Exposicion con guia");
-        tipoVisitas[2]=new TipoVisita("Completa");
-        tipoVisitas[3]=new TipoVisita("Completa con guia");
-
-        //TIPOS DE ENTRADAS
-        TipoDeEntrada[] tipoDeEntradas=new TipoDeEntrada[4];
-        tipoDeEntradas[0]=new TipoDeEntrada("General");
-        tipoDeEntradas[1]=new TipoDeEntrada("Adulto");
-        tipoDeEntradas[2]=new TipoDeEntrada("Menores");
-        tipoDeEntradas[3]=new TipoDeEntrada("Organizacion");
-
-        //TARIFAS
-
-        Tarifa[] tarifas=new Tarifa[4];
-        tarifas[0]=new Tarifa(LocalDate.of(2021,9,22),LocalDate.of(2021,7,20),50,20,tipoDeEntradas[0],tipoVisitas[0]);
-        tarifas[1]=new Tarifa(LocalDate.of(2021,8,22),LocalDate.of(2021,5,20),60,8,tipoDeEntradas[1],tipoVisitas[1]);
-        tarifas[2]=new Tarifa(LocalDate.of(2021,3,22),LocalDate.of(2021,3,20),70,10,tipoDeEntradas[2],tipoVisitas[2]);
-        tarifas[3]=new Tarifa(LocalDate.of(2021,2,22),LocalDate.of(2021,2,20),80,15,tipoDeEntradas[3],tipoVisitas[3]);
-
-        this.sede = new Sede(50,50,"PEPE",tarifas);*//*
-
-    }*/
+    private int cantidadPersonasEnSede;
+    private static GestorDeVentaDeEntradas instance;
 
     public GestorDeVentaDeEntradas() {
+        //"BASE DE DATOS"
+
         TipoVisita[] tipoVisitas=new TipoVisita[4];
         tipoVisitas[0]=new TipoVisita("Exposicion");
         tipoVisitas[1]=new TipoVisita("Exposicion con guia");
@@ -212,7 +186,6 @@ class GestorDeVentaDeEntradas implements ActionListener {
         plantas[0] = new Planta(1);
         plantas[1] = new Planta(2);
         Deposito deposito = new Deposito("Deposito1",1,sectorDepositos);
-//        this.sede = new Sede(50,50,"PEPE",tarifas);
         this.sedes = new Sede[4];
         sedes[0]=new Sede(50,50,"PEPE",tarifas, exposiciones, horarioSede, plantas, empleados, colecciones, deposito, tarifas);
         sedes[1]=new Sede(100,51,"PEPE1",tarifas, exposiciones, horarioSede, plantas, empleados, colecciones, deposito, tarifas);
@@ -236,128 +209,41 @@ class GestorDeVentaDeEntradas implements ActionListener {
         entradasACrear[3]= new Entrada(LocalDate.now(), LocalTime.now(), 95,10540,asignacionVisitas,this.sedes[1],tarifas[3]);
     }
 
-    /*public GestorDeVentaDeEntradas(Tarifa tarifa1, PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas, PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas, Tarifa[] tarifas) {
-        this.tarifa1 = tarifa1;
-        this.pantallaDeVentaDeEntradas = pantallaDeVentaDeEntradas;
-        this.pantallaRegistrarVentaDeEntradas = pantallaRegistrarVentaDeEntradas;
-        this.tarifas = tarifas;
+    public static GestorDeVentaDeEntradas getInstance(){
+        if (instance == null) {
+            instance = new GestorDeVentaDeEntradas();
+        }
+        return instance;
     }
 
-    public GestorDeVentaDeEntradas(PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas, Tarifa tarifa1) {
-        this.pantallaDeVentaDeEntradas=pantallaDeVentaDeEntradas;
-        this.tarifa1=tarifa1;
-        this.pantallaDeVentaDeEntradas.buttonRegistrarVenta.addActionListener(this);
-        //this.pantallaDeVentaDeEntradas.comboBoxTarifas.addItemListener;
-    }*/
-
-    /*public void  iniciar(){
-        pantallaDeVentaDeEntradas.setLocationRelativeTo(null);
-    }*/
-
-
-
-    public static void main(String[] args){
-        /*PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas = new PantallaDeVentaDeEntradas();
-        Tarifa tarifa = new Tarifa();
-        GestorDeVentaDeEntradas gestorDeVentaDeEntradas = new GestorDeVentaDeEntradas(pantallaDeVentaDeEntradas,tarifa);*/
-
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame jFrame=new PantallaRegistrarVentaDeEntradas();
-                jFrame.setSize(1200,1200);
-                jFrame.setVisible(true);
-
-            }
-        });
-        GestorDeVentaDeEntradas gestorDeVentaDeEntradas=new GestorDeVentaDeEntradas();
-        gestorDeVentaDeEntradas.registrarVentaDeEntrada();
-
-
-
-       /* Calendar c1 = Calendar.getInstance();
-        c1.getTime();
-
-        System.out.println("La hora es: "+ c1.get(Calendar.HOUR)+":"+c1.get(Calendar.MINUTE)+":"+c1.get(Calendar.SECOND));
-*/
-
-
-    }
-
-    public  void registrarVentaDeEntrada(){
-       //funciona faltan detalles de base
+    public void registrarVentaDeEntrada(){
          this.buscarTarifas();
-        //falta probar
+         //falta probar
 //        tomarSeleccionTarifa();
         this.calcularDuracionEstimada();
 //        tomarSeleccionDeEntradas();
         validarCantidadDeEntradas(tomarSeleccionDeEntradas(4), tomarSeleccionTarifa(tarifas));
-//        esMenorCantidadMaximaVisitantes();
-//        calcularMontoTotal();
         tomarConfirmacionDeVenta(true);
-//        crearEntrada();
-        getId();
+//        getId();
         getDate();
-        getMonto();
-        imprimirEntrada();
-        actualizarCantVisitantes();
+//        getMonto();
+//        imprimirEntrada();
         finCasoUso();
     }
 
-    public  Tarifa[] buscarTarifas(){
-            //Sede.conocerTarifa.
-        /*ArrayList<Tarifa> listaTarifas= new ArrayList<>();
-        *//*Sede[] sedes = new Sede[3];
-        sedes[0]=new Sede(30,5,"Carrafa");
-        sedes[1]=new Sede(40,5,"Virrey Liniers");
-        sedes[2]=new Sede(50,5,"Malba");*//*
-
-        *//*LocalDate localDate1 = LocalDate.of(20,02,8);
-        System.out.println("LA FECHA ESSSSSSS"+localDate1);*//*
-        //TIPOS DE VISITAS
-        TipoVisita[] tipoVisitas=new TipoVisita[4];
-        tipoVisitas[0]=new TipoVisita("Exposicion");
-        tipoVisitas[1]=new TipoVisita("Exposicion con guia");
-        tipoVisitas[2]=new TipoVisita("Completa");
-        tipoVisitas[3]=new TipoVisita("Completa con guia");
-
-        //TIPOS DE ENTRADAS
-        TipoDeEntrada[] tipoDeEntradas=new TipoDeEntrada[4];
-        tipoDeEntradas[0]=new TipoDeEntrada("General");
-        tipoDeEntradas[1]=new TipoDeEntrada("Adulto");
-        tipoDeEntradas[2]=new TipoDeEntrada("Menores");
-        tipoDeEntradas[3]=new TipoDeEntrada("Organizacion");
-
-        //TARIFAS
-
-        Tarifa[] tarifas=new Tarifa[4];
-        tarifas[0]=new Tarifa(LocalDate.of(2021,9,22),LocalDate.of(2021,7,20),50,20,tipoDeEntradas[0],tipoVisitas[0]);
-        tarifas[1]=new Tarifa(LocalDate.of(2021,8,22),LocalDate.of(2021,5,20),60,8,tipoDeEntradas[1],tipoVisitas[1]);
-        tarifas[2]=new Tarifa(LocalDate.of(2021,3,22),LocalDate.of(2021,3,20),70,10,tipoDeEntradas[2],tipoVisitas[2]);
-        tarifas[3]=new Tarifa(LocalDate.of(2021,2,22),LocalDate.of(2021,2,20),80,15,tipoDeEntradas[3],tipoVisitas[3]);
-
-        *//*for (int i=0;i<=tarifas.length-1;i++){
-            System.out.println("La fecha Fin de Vigencia "+tarifas[i].getFechaFinVigencia()+"\n"+"La Fecha inicio Vigencia es: "+tarifas[i].getFechaInicioVigencia()+"\n"+"El Monto es: "+tarifas[i].getMonto()+"\n"+"El Monto Adicional por Guia es: "+tarifas[i].getMontoAdicionaGuia()+"\n");
-        }
-*//*
-        //RECORRE TARIFAS Y MUESTRA POR CONSOLA FALTA QUE ENVIE A INTERFAZ LA INFO
-        for(Tarifa e:tarifas){
-            //System.out.println("La fecha Fin de Vigencia: "+e.getFechaFinVigencia()+"\n"+"La Fecha inicio Vigencia es: "+e.getFechaInicioVigencia()+"\n"+"El Monto es: "+e.getMonto()+"\n"+"El Monto Adicional por Guia es: "+e.getMontoAdicionaGuia()+"\n"+"El tipo de entrada es: "+e.getTipoDeEntrada().getNombre()+"\n"+"El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
-            listaTarifas.add(e);
-        }*/
-        /*System.out.println("LA LISTA ES: "+listaTarifas.toString());*/
-
-        //tarifas2= Sede.conocerTarifa();
-
-        //ES EL METODO QUE FUNCIONA OK
+    public Tarifa[] buscarTarifas(){
         this.tarifas = this.sedes[0].conocerTarifa();
         for(Tarifa e:this.tarifas){
-            System.out.println("La fecha Fin de Vigencia DE TARIFA 2: "+e.getFechaFinVigencia()+"\n"+"La Fecha inicio Vigencia es: "+e.getFechaInicioVigencia()+"\n"+"El Monto es: "+e.getMonto()+"\n"+"El Monto Adicional por Guia es: "+e.getMontoAdicionaGuia()+"\n"+"El tipo de entrada es: "+e.getTipoDeEntrada().getNombre()+"\n"+"El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
-
+            System.out.println(
+                    "La fecha Fin de Vigencia DE TARIFA 2: "+e.getFechaFinVigencia()+"\n"+
+                    "La Fecha inicio Vigencia es: "+e.getFechaInicioVigencia()+"\n"+
+                    "El Monto es: "+e.getMonto()+"\n"+
+                    "El Monto Adicional por Guia es: "+e.getMontoAdicionaGuia()+"\n"+
+                    "El tipo de entrada es: "+e.getTipoDeEntrada().getNombre()+"\n"+
+                    "El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
         }
 
         PantallaDeVentaDeEntradas.mostrarTarifas(this.tarifas);
-
 
         return this.tarifas;
     }
@@ -368,28 +254,8 @@ class GestorDeVentaDeEntradas implements ActionListener {
     }
 
     public float calcularDuracionEstimada(){
-        //ArrayList<DetalleExposicion> listaDetalles=new ArrayList<>();
-       /* DetalleExposicion[] detalleExposicion=new DetalleExposicion[4];
-        detalleExposicion[0]=new DetalleExposicion("Centro");
-        detalleExposicion[1]=new DetalleExposicion("Centro");
-        detalleExposicion[2]=new DetalleExposicion("Centro");
-        detalleExposicion[3]=new DetalleExposicion("Centro");*/
-
-        /*detalleExposicionArrayList.add(detalleExposicions[0]);
-        detalleExposicionArrayList.add(detalleExposicions[1]);
-        detalleExposicionArrayList.add(detalleExposicions[2]);
-        detalleExposicionArrayList.add(detalleExposicions[3]);*/
-
-        /*for(DetalleExposicion e:detalleExposicion){
-            listaDetalles.add(e);
-
-        }*/
-
-       /* Exposicion[] exposicions=new Exposicion[4];
-        exposicions[0]=new Exposicion(LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22),LocalDate.of(2021,9,22), LocalTime.of(2,15,00),LocalTime.of(02,15,00),"Renacimiento",ArrayList<DetalleExposicion>detalleExposicion[0]);
-*/
-        this.duracionEstimada=this.sedes[0].getDuracion();
-        System.out.println("LA DURACION EN GESTOR ESSSSSSSSSSSSSSSSS: "+this.duracionEstimada);
+        this.duracionEstimada = this.sedes[0].getDuracion();
+        System.out.println("LA DURACION EN GESTOR ESSSS: "+this.duracionEstimada);
         return this.duracionEstimada;
     }
 
@@ -398,21 +264,13 @@ class GestorDeVentaDeEntradas implements ActionListener {
     }
 
     public void validarCantidadDeEntradas(int cantidadDeEntradas, Tarifa[] tarifas){
-        int alumnosConfirmados = 0;
-//        System.out.println("Cantidad entradas: "+ cantidadDeEntradas);
-//        for (Tarifa e: tarifas){
-//            System.out.println("Monto tarifa: " + e.getMonto());
-//        }
+        int alumnosConfirmados = 0;//Poner arriba como atributo
         for(ReservaVisita e:this.reservasVisita){
-           // System.out.println("DATOS DE LA RESERVA EN GESTOR"+ e.getNumeroReserva());
-//            System.out.println("LA SEDE EN GESTOR ESSSss: "+ this.sedes[1].getNombre());
             if(e.esSedeActual(this.sedes[1]) && e.validaHorario(e.getHoraInicioReal(), e.getHoraFinReal())){
-//              System.out.println("ES LA SEDEEEEEEEE EN GESTOR: "+e.getSede().getNombre());
-//                System.out.println("CUMPLE LA CONDICION DE HORARIO :D");
                 alumnosConfirmados = e.getCantidadAlumnosConfirmada(); //Poner arriba como atributo
             }
         }
-        int cantMaxVisitantes = this.sedes[1].getCantMaximaVisitantes();
+        int cantMaxVisitantes = this.sedes[1].getCantMaximaVisitantes(); //Poner arriba como atributo
         if(esMenorCantidadMaximaVisitantes(alumnosConfirmados, cantMaxVisitantes, cantidadDeEntradas)){
             this.calcularMontoTotal(tarifas);
             //PantallaDeVentaDeEntradas.detalleDeEntradas();
@@ -424,20 +282,11 @@ class GestorDeVentaDeEntradas implements ActionListener {
     public boolean esMenorCantidadMaximaVisitantes(int alumnosConfirmados, int cantMaxVisitantes, int cantidadDeEntradas){
         if(alumnosConfirmados + cantidadDeEntradas <= cantMaxVisitantes){
             esMenorCantidad=true;
-//            System.out.println("AlumnosConfirmados: " + alumnosConfirmados);
-//            System.out.println("cantidadDeEntradas: " + cantidadDeEntradas);
-//            System.out.println("cantMaxVisitantes: " + cantMaxVisitantes);
-//            System.out.println("esMenorCantidad"+esMenorCantidad);
         }else {
             esMenorCantidad=false;
-//            System.out.println("AlumnosConfirmados: " + alumnosConfirmados);
-//            System.out.println("cantidadDeEntradas: " + cantidadDeEntradas);
-//            System.out.println("cantMaxVisitantes: " + cantMaxVisitantes);
-//            System.out.println("esMenorCantidad: "+esMenorCantidad);
         }
 
         return this.esMenorCantidad;
-
     }
 
     public float calcularMontoTotal(Tarifa[] tarifas){
@@ -464,12 +313,10 @@ class GestorDeVentaDeEntradas implements ActionListener {
         for (Entrada e: entradas){
             System.out.println("Entrada creada: "+e.getMonto());
         }
+        this.actualizarCantVisitantes(entradasACrear.length);
     }
 
-    public static void getId(){
-
-
-    }
+//    public static void getId(){}
 
     public LocalDate getDate(){
         return LocalDate.now();
@@ -479,28 +326,21 @@ class GestorDeVentaDeEntradas implements ActionListener {
         return LocalTime.now();
     }
 
-    public static void getMonto(){
+//    public static void getMonto(){}
 
+//    public void imprimirEntrada(){}
 
+    public void actualizarCantVisitantes(int cantidadDeEntradas){
+        this.cantidadPersonasEnSede += cantidadDeEntradas;
     }
 
-    public static void imprimirEntrada(){
-
-
-    }
-
-    public static void actualizarCantVisitantes(){
-
-    }
-
-    public static void finCasoUso(){
-
+    public void finCasoUso(){
         System.out.println("Este es el fin del caso de uso");
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
+
 }

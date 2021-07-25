@@ -71,6 +71,4 @@ public class PrestamoAMuseo {
                 ", museo=" + museo +
                 '}';
     }
-
-    //conocerMuseo;
 }

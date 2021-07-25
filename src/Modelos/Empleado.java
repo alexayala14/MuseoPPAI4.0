@@ -159,7 +159,4 @@ public class Empleado {
                 '}';
     }
 
-    //conocerCargo();
-    //conocerHorario();
-
 }

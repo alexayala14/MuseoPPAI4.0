@@ -23,7 +23,6 @@ public class ReservaVisita{
     private boolean esSedeActual=false;
 
 
-
     public ReservaVisita() {
     }
 
@@ -62,14 +61,6 @@ public class ReservaVisita{
         tarifas[1]=new Tarifa(LocalDate.of(2021,8,22),LocalDate.of(2021,5,20),60,8,tipoDeEntradas[1],tipoVisitas[1]);
         tarifas[2]=new Tarifa(LocalDate.of(2021,3,22),LocalDate.of(2021,3,20),70,10,tipoDeEntradas[2],tipoVisitas[2]);
         tarifas[3]=new Tarifa(LocalDate.of(2021,2,22),LocalDate.of(2021,2,20),80,15,tipoDeEntradas[3],tipoVisitas[3]);
-
-
-       /* Sede[] sedes = new Sede[4];
-        sedes[0]=new Sede(50,50,"PEPE",tarifas);
-        sedes[1]=new Sede(50,50,"Jose",tarifas);
-        sedes[2]=new Sede(50,50,"Alberto",tarifas);
-        sedes[3]=new Sede(50,50,"Dario",tarifas);*/
-
     }
 
     public int getCantidadAlumnos() {
@@ -195,19 +186,13 @@ public class ReservaVisita{
                 '}';
     }
 
-    /*conocerAsignacionGuia(){}
-    conocerCambioEstado(){}
-    conocerEmpleado(){}
-    conocerExposicion(){}*/
     public boolean esSedeActual(Sede sede) {
-//        System.out.println("EN RESERVA ESSSSSS: "+sede.getNombre());
         if(this.getSede().getNombre().equals(sede.getNombre())){
             System.out.println("EN RESERVA ESSSSSS: "+sede.getNombre());
             this.esSedeActual=true;
             System.out.println("esSedeActual: "+this.esSedeActual);
         }else {
             this.esSedeActual=false;
-//            System.out.println("esSedeActual: "+this.esSedeActual);
         }
         return this.esSedeActual;
     }

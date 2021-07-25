@@ -46,7 +46,4 @@ public class Estado {
                 ", nombre='" + nombre + '\'' +
                 '}';
     }
-
-    //esAmbitoObra();
-    //esPendienteAsigDeposito();
 }
