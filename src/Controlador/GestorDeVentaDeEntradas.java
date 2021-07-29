@@ -25,6 +25,7 @@ public class GestorDeVentaDeEntradas implements ActionListener {
     //private static Tarifa[] tarifas;
 //    private Sede sede;
     private Sede[] sedes;
+    public Sede sedeActual;
     private ReservaVisita[] reservasVisita;
     private Entrada[] entradasACrear;
     private int cantidadPersonasEnSede;
@@ -191,6 +192,7 @@ public class GestorDeVentaDeEntradas implements ActionListener {
         sedes[1]=new Sede(100,51,"PEPE1",tarifas, exposiciones, horarioSede, plantas, empleados, colecciones, deposito, tarifas);
         sedes[2]=new Sede(52,52,"PEPE2",tarifas, exposiciones, horarioSede, plantas, empleados, colecciones, deposito, tarifas);
         sedes[3]=new Sede(53,53,"PEPE3",tarifas, exposiciones, horarioSede, plantas, empleados, colecciones, deposito, tarifas);
+        sedeActual = sedes[0];
 
         this.reservasVisita = new ReservaVisita[8];
         reservasVisita[0]=new ReservaVisita(20,40,LocalTime.now(),LocalDate.of(2021,7,20),LocalDate.of(2021,7,20),LocalTime.of(2,10),LocalTime.of(17,10),1,exposiciones,sedes[0],escuelas[0],cambioDeEstados,asignacionVisitas);

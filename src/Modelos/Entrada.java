@@ -16,6 +16,15 @@ public class Entrada {
     public Entrada() {
     }
 
+    public Entrada(LocalDate fechaVenta, LocalTime horaVenta, float monto, int numero, Sede sede, Tarifa tarifa) {
+        this.fechaVenta = fechaVenta;
+        this.horaVenta = horaVenta;
+        this.monto = monto;
+        this.numero = numero;
+        this.sede = sede;
+        this.tarifa = tarifa;
+    }
+
     public Entrada(LocalDate fechaVenta, LocalTime horaVenta, float monto, int numero, AsignacionVisita[] asignacionVisitas, Sede sede, Tarifa tarifa) {
         this.fechaVenta = fechaVenta;
         this.horaVenta = horaVenta;
