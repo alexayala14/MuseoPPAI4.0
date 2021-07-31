@@ -14,7 +14,7 @@
          </image>
       </ImageView>
       <Button layoutX="62.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" text="Mi Usuario" />
-      <Button layoutX="41.0" layoutY="210.0" mnemonicParsing="false" onAction="#switchToRegistrarVenta" prefHeight="25.0" prefWidth="172.0" text="Registrar Venta de Entradas" />
-      <Button layoutX="62.0" layoutY="243.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="25.0" prefWidth="129.0" text="Salir" />
+      <Button layoutX="41.0" layoutY="210.0" mnemonicParsing="false" onAction="#habilitarVentana" prefHeight="25.0" prefWidth="172.0" text="Registrar Venta de Entradas" />
+      <!--<Button layoutX="62.0" layoutY="243.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="25.0" prefWidth="129.0" text="Salir" />-->
    </children>
 </AnchorPane>

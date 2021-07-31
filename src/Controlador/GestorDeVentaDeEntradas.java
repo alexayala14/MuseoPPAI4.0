@@ -1,25 +1,19 @@
 package Controlador;
 
 import Modelos.*;
-import Vistas.PantallaDeVentaDeEntradas;
-import Vistas.PantallaRegistrarVentaDeEntradas;
+import VistasFX.PantallaDeVentaDeEntradas;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZonedDateTime;
-import java.util.*;
 
-public class GestorDeVentaDeEntradas implements ActionListener {
+public class GestorDeVentaDeEntradas  {
 
     public LocalDate fechaHoy = LocalDate.now();
     public LocalTime horaHoy = LocalTime.now();
     private Tarifa[] tarifas;
-    private PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas;
-    private PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas;
+    private Tarifa tarifa;
+    /*private PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas;
+    private PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas;*/
     private float duracionEstimada;
     private boolean esMenorCantidad=false;
     //private static Tarifa[] tarifas;
@@ -219,12 +213,13 @@ public class GestorDeVentaDeEntradas implements ActionListener {
     }
 
     public void registrarVentaDeEntrada(){
-         this.buscarTarifas();
+        PantallaDeVentaDeEntradas.mostrarTarifas(this.buscarTarifas());
+         //this.buscarTarifas();
          //falta probar
 //        tomarSeleccionTarifa();
-        this.calcularDuracionEstimada();
+        duracionEstimada= this.calcularDuracionEstimada();
 //        tomarSeleccionDeEntradas();
-        validarCantidadDeEntradas(tomarSeleccionDeEntradas(4), tomarSeleccionTarifa(tarifas));
+        validarCantidadDeEntradas(tomarSeleccionDeEntradas(4), this.tomarSeleccionTarifa(tarifa));
         tomarConfirmacionDeVenta(true);
 //        getId();
         getDate();
@@ -245,14 +240,15 @@ public class GestorDeVentaDeEntradas implements ActionListener {
                     "El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
         }
 
-        PantallaDeVentaDeEntradas.mostrarTarifas(this.tarifas);
+        //PantallaDeVentaDeEntradas.mostrarTarifas(this.tarifas);
+        System.out.println("LE ESTOY ENVIANDO TARIFAS" + this.tarifas);
 
         return this.tarifas;
     }
 
-    public Tarifa[] tomarSeleccionTarifa(Tarifa[] tarifas){
-        this.tarifas = tarifas;
-        return tarifas;
+    public Tarifa tomarSeleccionTarifa(Tarifa tarifa){
+        this.tarifa = tarifa;
+        return tarifa;
     }
 
     public float calcularDuracionEstimada(){
@@ -265,7 +261,7 @@ public class GestorDeVentaDeEntradas implements ActionListener {
         return cantidadEntradas;
     }
 
-    public void validarCantidadDeEntradas(int cantidadDeEntradas, Tarifa[] tarifas){
+    public void validarCantidadDeEntradas(int cantidadDeEntradas, Tarifa tarifa){
         int alumnosConfirmados = 0;//Poner arriba como atributo
         for(ReservaVisita e:this.reservasVisita){
             if(e.esSedeActual(this.sedes[1]) && e.validaHorario(e.getHoraInicioReal(), e.getHoraFinReal())){
@@ -274,7 +270,7 @@ public class GestorDeVentaDeEntradas implements ActionListener {
         }
         int cantMaxVisitantes = this.sedes[1].getCantMaximaVisitantes(); //Poner arriba como atributo
         if(esMenorCantidadMaximaVisitantes(alumnosConfirmados, cantMaxVisitantes, cantidadDeEntradas)){
-            this.calcularMontoTotal(tarifas);
+            this.calcularMontoTotal(cantidadDeEntradas,tarifa);
             //PantallaDeVentaDeEntradas.detalleDeEntradas();
         }else {
             //PantallaDeVentaDeEntradas.detalleDeEntradas();
@@ -291,13 +287,14 @@ public class GestorDeVentaDeEntradas implements ActionListener {
         return this.esMenorCantidad;
     }
 
-    public float calcularMontoTotal(Tarifa[] tarifas){
+    public float calcularMontoTotal(int cantidadDeEntradas,Tarifa tarifa){
         float montoTotal = 0; //SACAR ATRIBUTO GLOBALMENTE
-        for (Tarifa e: tarifas){
-            System.out.println("Monto tarifa: " + e.getMonto());
-            System.out.println("Monto adicional por guia: " + e.getMontoAdicionaGuia());
-            montoTotal += (e.getMonto() + e.getMontoAdicionaGuia());
-      }
+
+            System.out.println("Monto tarifa: " + tarifa.getMonto());
+            System.out.println("Monto adicional por guia: " + tarifa.getMontoAdicionaGuia());
+            montoTotal += (tarifa.getMonto() + tarifa.getMontoAdicionaGuia()) * cantidadDeEntradas;
+        System.out.println("EN TOTAL ES EN CALCULAR MONTO TOTAL "+ montoTotal);
+
         return montoTotal;
     }
 
@@ -340,9 +337,9 @@ public class GestorDeVentaDeEntradas implements ActionListener {
         System.out.println("Este es el fin del caso de uso");
     }
 
-    @Override
+ /*   @Override
     public void actionPerformed(ActionEvent e) {
 
-    }
+    }*/
 
 }

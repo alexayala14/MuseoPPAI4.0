@@ -30,7 +30,7 @@
         <ComboBox fx:id="tiposEntradaVisitaCombo" layoutX="25.0" layoutY="70.0" prefHeight="25.0" prefWidth="429.0" promptText="Seleccione..." />
         <Label layoutX="25.0" layoutY="46.0" prefHeight="17.0" prefWidth="101.0" text="Tarifa" />
         <Button layoutX="693.0" layoutY="467.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="Registrar entradas" />
-        <Button layoutX="14.0" layoutY="467.0" mnemonicParsing="false" onAction="#switchToFirstScene" prefHeight="25.0" prefWidth="84.0" text="Atrás" />
+        <!--<Button layoutX="14.0" layoutY="467.0" mnemonicParsing="false" onAction="#switchToFirstScene" prefHeight="25.0" prefWidth="84.0" text="Atrás" />-->
       <TableView fx:id="tablaEntradas" layoutX="14.0" layoutY="218.0" prefHeight="240.0" prefWidth="793.0">
         <columns>
           <TableColumn fx:id="tipoEntradaCol" prefWidth="101.0" text="Tipo de Entrada" />

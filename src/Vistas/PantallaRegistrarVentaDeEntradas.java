@@ -1,5 +1,6 @@
 package Vistas;
 
+/*
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -56,3 +57,4 @@ class FondoPanel extends JPanel{
         super.paint(g);
     }
 }
+*/

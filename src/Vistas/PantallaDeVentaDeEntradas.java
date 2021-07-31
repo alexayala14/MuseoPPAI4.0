@@ -1,7 +1,6 @@
 package Vistas;
 
-import Modelos.Tarifa;
-
+/*
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,8 +59,10 @@ public class PantallaDeVentaDeEntradas extends JFrame{
         });
 
 
-        /*String pepito="pepito1";
-        comboBoxTarifas.addItem(pepito);*/
+        */
+/*String pepito="pepito1";
+        comboBoxTarifas.addItem(pepito);*//*
+
         System.out.println("lA CANTIDAD DE ELEMTOS EN PANTALLA ES "+tarifas.length);
             for (Tarifa e:tarifas){
                 comboBoxTarifas.addItem("Tipo Visita:"+e.getTipoVisita().getNombre()+" "+"Tipo Entrada:"+e.getTipoDeEntrada().getNombre()+" "+"Monto:"+e.getMonto()+" "+"Monto Adicional:"+e.getMontoAdicionaGuia());
@@ -81,7 +82,9 @@ public class PantallaDeVentaDeEntradas extends JFrame{
             pepito2=e.getTipoVisita().getNombre();
         }
         //comboBoxTarifas.addItem(pepito);
-        /*return pepito;*/
+        */
+/*return pepito;*//*
+
         return tarifas;
     }
 
@@ -92,3 +95,4 @@ public class PantallaDeVentaDeEntradas extends JFrame{
         spinner1=new JSpinner(sm);
     }
 }
+*/

@@ -3,7 +3,6 @@ package VistasFX;
 import Controlador.GestorDeVentaDeEntradas;
 import Modelos.TablaEntradas;
 import Modelos.Tarifa;
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +15,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,15 +23,17 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class PantallaDeVentaDeEntradas extends Application implements Initializable {
-    private Scene scene;
-    private Stage stage;
-    private Parent root;
-    private ComboBox<Tarifa> tipoEntradaTipoVisita;
-    private TextField montoCampo;
-    private TextField montoAdicionalGuiaCampo;
+public class PantallaDeVentaDeEntradas implements Initializable {
+    public Button ingresar;
+    private static Scene scene;
+    private static Stage stage;
+    private static Parent root;
+    private static ComboBox<Tarifa> tipoEntradaTipoVisita;
+    private static TextField montoCampo;
+    private static TextField montoAdicionalGuiaCampo;
     private Spinner<Integer> cantidadDeEntradas;
     private Button agregarEntradasButton;
+    private int supuestaCantidadMaxSede;
 
 //    @FXML
 //    private TableView<String> tablaEntradas = new TableView<String>(){};
@@ -50,13 +50,14 @@ public class PantallaDeVentaDeEntradas extends Application implements Initializa
     @FXML
     private TableColumn<Integer, Integer> montoTotalCol = new TableColumn<Integer, Integer>();
 
-    private int indiceSeleccionado;
+    private static int indiceSeleccionado;
     private static int cantidadDeEntradasSeleccionadas;
     private static Tarifa tarifaSeleccionada = new Tarifa();
 
-    private float montoEntrada;
+    private static float montoEntrada;
     private int numeroEntrada;
     private static GestorDeVentaDeEntradas gestorDeVentaDeEntradas;
+    private Tarifa[] tarifas;
 
     //EJEMPLOS
     @FXML
@@ -69,7 +70,7 @@ public class PantallaDeVentaDeEntradas extends Application implements Initializa
 
     TablaEntradas tablaDeEntradas;
 
-    @Override
+    /*@Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("PantallaLogin.fxml"));
         Scene scene = new Scene(root);
@@ -80,38 +81,40 @@ public class PantallaDeVentaDeEntradas extends Application implements Initializa
 
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
-    public static void main(String[] args){
+   /* public static void main(String[] args){
         gestorDeVentaDeEntradas = GestorDeVentaDeEntradas.getInstance();
-        launch(args);
-    }
+        //launch(args);
+    }*/
 
-    public void switchToLogin(ActionEvent event) throws IOException {
+  /*  public void switchToLogin(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("PantallaLogin.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
-    public void switchToFirstScene(ActionEvent event) throws IOException {
+    /*public void switchToFirstScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("PantallaInicio.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
-    public void switchToRegistrarVenta(ActionEvent event) throws IOException {
+    public void habilitarVentana(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("PantallaRegistrarVentaDeEntradas.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
 
-        int supuestaCantidadMaxSede = 1000;
+        //int supuestaCantidadMaxSede = 1000;
+        GestorDeVentaDeEntradas gestorDeVentaDeEntradas = GestorDeVentaDeEntradas.getInstance();
+        gestorDeVentaDeEntradas.registrarVentaDeEntrada();
 
-        Tarifa[] tarifas = gestorDeVentaDeEntradas.buscarTarifas();
+        /*Tarifa[] tarifas = gestorDeVentaDeEntradas.buscarTarifas();
         ArrayList<String> tiposDeEntradasYVisitas = new ArrayList<>();
         ArrayList<Float> montos = new ArrayList<>();
         ArrayList<Float> montosPorGuia = new ArrayList<>();
@@ -121,42 +124,42 @@ public class PantallaDeVentaDeEntradas extends Application implements Initializa
             tiposDeEntradasYVisitas.add("Tipo de Entrada: " + t.getTipoDeEntrada().getNombre() + " | Tipo de Visita: " + t.getTipoVisita().getNombre());
             montos.add(t.getMonto());
             montosPorGuia.add(t.getMontoAdicionaGuia());
-        }
+        }*/
 
         agregarEntradasButton = (Button)scene.lookup("#agregarEntradaButton");
 
-        tipoEntradaTipoVisita = (ComboBox)scene.lookup("#tiposEntradaVisitaCombo");
+        /*tipoEntradaTipoVisita = (ComboBox)scene.lookup("#tiposEntradaVisitaCombo");
         tipoEntradaTipoVisita.getItems().addAll(tarifas);
 
         montoCampo = (TextField) scene.lookup("#montoTextField");
-        montoAdicionalGuiaCampo = (TextField) scene.lookup("#montoAdicionalPorGuiaTextField");
+        montoAdicionalGuiaCampo = (TextField) scene.lookup("#montoAdicionalPorGuiaTextField");*/
 
-        cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
+       /* cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, supuestaCantidadMaxSede);
         valueFactory.setValue(0);
         cantidadDeEntradas.setValueFactory(valueFactory);
-        cantidadDeEntradasSeleccionadas = cantidadDeEntradas.getValue();
+        cantidadDeEntradasSeleccionadas = cantidadDeEntradas.getValue();*/
 
-        ChangeListener listenerTarifa = ((observable, oldValue, newValue) -> {
+       /* ChangeListener listenerTarifa = ((observable, oldValue, newValue) -> {
             indiceSeleccionado =  tipoEntradaTipoVisita.getItems().indexOf(newValue);
             montoCampo.setText(String.valueOf(tarifas[indiceSeleccionado].getMonto()));
             montoAdicionalGuiaCampo.setText(String.valueOf(tarifas[indiceSeleccionado].getMontoAdicionaGuia()));
             montoEntrada = tarifas[indiceSeleccionado].getMonto() + tarifas[indiceSeleccionado].getMontoAdicionaGuia();
             tarifaSeleccionada = tarifas[indiceSeleccionado];
-        });
+        });*/
 
-        ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
+        /*ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
             cantidadDeEntradasSeleccionadas = (int) newValue;
             if (cantidadDeEntradasSeleccionadas == supuestaCantidadMaxSede){
                 System.out.println("NO SE PUEDEN AGREGAR MÁS ENTRADAS!!!");
             }
-        });
+        });*/
 
-        tipoEntradaTipoVisita.valueProperty().addListener(listenerTarifa);
-        cantidadDeEntradas.valueProperty().addListener(listenerSpinner);
+        //tipoEntradaTipoVisita.valueProperty().addListener(listenerTarifa);
+        /*cantidadDeEntradas.valueProperty().addListener(listenerSpinner);
 
         Random rand = new Random();
-        numeroEntrada = rand.nextInt(10000);
+        numeroEntrada = rand.nextInt(10000);*/
 
 //        agregarEntradasButton.setOnMouseClicked((evento) -> {
 //            try {
@@ -172,7 +175,61 @@ public class PantallaDeVentaDeEntradas extends Application implements Initializa
         stage.show();
     }
 
-    public void mostrarTarifas() throws IOException{
+    public static void mostrarTarifas(Tarifa[] tarifas){
+        System.out.println("LLEGARON LAS TARIFAS"+tarifas);
+        //tarifas = tarifas;
+        ArrayList<String> tiposDeEntradasYVisitas = new ArrayList<>();
+        ArrayList<Float> montos = new ArrayList<>();
+        ArrayList<Float> montosPorGuia = new ArrayList<>();
+
+        for (Tarifa t: tarifas){
+            System.out.println("Tarifa en pantalla: "+ t.toString());
+            tiposDeEntradasYVisitas.add("Tipo de Entrada: " + t.getTipoDeEntrada().getNombre() + " | Tipo de Visita: " + t.getTipoVisita().getNombre());
+            montos.add(t.getMonto());
+            montosPorGuia.add(t.getMontoAdicionaGuia());
+        }
+
+        tipoEntradaTipoVisita = (ComboBox)scene.lookup("#tiposEntradaVisitaCombo");
+        tipoEntradaTipoVisita.getItems().addAll(tarifas);
+
+        montoCampo = (TextField) scene.lookup("#montoTextField");
+        montoAdicionalGuiaCampo = (TextField) scene.lookup("#montoAdicionalPorGuiaTextField");
+
+        ChangeListener listenerTarifa = ((observable, oldValue, newValue) -> {
+            indiceSeleccionado =  tipoEntradaTipoVisita.getItems().indexOf(newValue);
+            montoCampo.setText(String.valueOf(tarifas[indiceSeleccionado].getMonto()));
+            montoAdicionalGuiaCampo.setText(String.valueOf(tarifas[indiceSeleccionado].getMontoAdicionaGuia()));
+            montoEntrada = tarifas[indiceSeleccionado].getMonto() + tarifas[indiceSeleccionado].getMontoAdicionaGuia();
+            tarifaSeleccionada = tarifas[indiceSeleccionado];
+            gestorDeVentaDeEntradas.tomarSeleccionTarifa(tarifaSeleccionada);
+        });
+        tipoEntradaTipoVisita.valueProperty().addListener(listenerTarifa);
+
+    }
+
+    public void tomarSeleccionDeEntradas(){
+        supuestaCantidadMaxSede=1000;
+        cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, supuestaCantidadMaxSede);
+        valueFactory.setValue(0);
+        cantidadDeEntradas.setValueFactory(valueFactory);
+        cantidadDeEntradasSeleccionadas = cantidadDeEntradas.getValue();
+
+        ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
+            cantidadDeEntradasSeleccionadas = (int) newValue;
+            if (cantidadDeEntradasSeleccionadas == supuestaCantidadMaxSede){
+                System.out.println("NO SE PUEDEN AGREGAR MÁS ENTRADAS!!!");
+            }
+            gestorDeVentaDeEntradas.tomarSeleccionDeEntradas(cantidadDeEntradasSeleccionadas);
+        });
+
+        cantidadDeEntradas.valueProperty().addListener(listenerSpinner);
+
+        Random rand = new Random();
+        numeroEntrada = rand.nextInt(10000);
+
+
+
 
     }
 
