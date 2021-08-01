@@ -14,12 +14,8 @@ public class GestorDeVentaDeEntradas  {
     private Tarifa[] tarifas;
     private Tarifa tarifa;
     private static Tarifa tarifaSelecionada;
-    /*private PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas;
-    private PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas;*/
     private float duracionEstimada;
     private boolean esMenorCantidad=false;
-    //private static Tarifa[] tarifas;
-//    private Sede sede;
     private Sede[] sedes;
     public Sede sedeActual;
     private ReservaVisita[] reservasVisita;
@@ -27,6 +23,8 @@ public class GestorDeVentaDeEntradas  {
     private int cantidadPersonasEnSede;
     private static GestorDeVentaDeEntradas instance;
     private static int cantidadDeEntradas;
+    public int cantMaxVisitantes;
+    public int alumnosConfirmados;
 
     public GestorDeVentaDeEntradas() {
         //"BASE DE DATOS"
@@ -190,6 +188,7 @@ public class GestorDeVentaDeEntradas  {
         sedes[2]=new Sede(52,52,"PEPE2",tarifas, exposiciones, horarioSede, plantas, empleados, colecciones, deposito, tarifas);
         sedes[3]=new Sede(53,53,"PEPE3",tarifas, exposiciones, horarioSede, plantas, empleados, colecciones, deposito, tarifas);
         sedeActual = sedes[0];
+        cantMaxVisitantes = sedes[1].getCantMaximaVisitantes();
 
         this.reservasVisita = new ReservaVisita[8];
         reservasVisita[0]=new ReservaVisita(20,40,LocalTime.now(),LocalDate.of(2021,7,20),LocalDate.of(2021,7,20),LocalTime.of(2,10),LocalTime.of(17,10),1,exposiciones,sedes[0],escuelas[0],cambioDeEstados,asignacionVisitas);
@@ -225,7 +224,7 @@ public class GestorDeVentaDeEntradas  {
 
 //        tomarSeleccionDeEntradas();
         /*validarCantidadDeEntradas(cantidadDeEntradas);*/
-        tomarConfirmacionDeVenta(true);
+//        tomarConfirmacionDeVenta(PantallaDeVentaDeEntradas.getInstance().tomarConfirmacionDeVenta());
 //        getId();
         getDate();
 //        getMonto();
@@ -267,35 +266,39 @@ public class GestorDeVentaDeEntradas  {
     public static int tomarSeleccionDeEntradas(int cantidadEntradas){
 
         System.out.println("ESTOY EN SELECCION DEENTRASDA "+ cantidadEntradas);
-        cantidadDeEntradas=cantidadEntradas;
+        cantidadDeEntradas = cantidadEntradas;
         System.out.println("ES VERDADEROOOOOOOOOO: "+getInstance().validarCantidadDeEntradas(cantidadDeEntradas));
+
         return cantidadDeEntradas;
     }
 
     public boolean validarCantidadDeEntradas(int cantidadDeEntradas){
-        int alumnosConfirmados = 0;//Poner arriba como atributo
+//        int alumnosConfirmados = 0;//Poner arriba como atributo
         for(ReservaVisita e:this.reservasVisita){
             if(e.esSedeActual(this.sedes[1]) && e.validaHorario(e.getHoraInicioReal(), e.getHoraFinReal())){
-                alumnosConfirmados = e.getCantidadAlumnosConfirmada(); //Poner arriba como atributo
+                alumnosConfirmados = e.getCantidadAlumnosConfirmada();
             }
         }
-        int cantMaxVisitantes = this.sedes[1].getCantMaximaVisitantes(); //Poner arriba como atributo
+        //Poner arriba como atributo
 
 
-        System.out.println("ALUMNOS CONFIRMADOS"+alumnosConfirmados+"  Cantidad Maxima: "+cantMaxVisitantes);
+        System.out.println("ALUMNOS CONFIRMADOS "+alumnosConfirmados+"  Cantidad Maxima: "+cantMaxVisitantes);
         if(esMenorCantidadMaximaVisitantes(alumnosConfirmados, cantMaxVisitantes, cantidadDeEntradas)){
-            //this.calcularMontoTotal(cantidadDeEntradas,tarifaSelecionada);
-            //PantallaDeVentaDeEntradas.detalleDeEntradas();
 
             //VERIFICAR QUE TARIFA SELECCIONADA NO SEA NULL
             if (tarifaSelecionada != null){
                 PantallaDeVentaDeEntradas.mostrarDetalleDeEntrada(this.calcularMontoTotal(cantidadDeEntradas,tarifaSelecionada));
+                System.out.println("CANTIDAD DE ENTRADAS EN GESTOR (en true): "+cantidadDeEntradas);
                 System.out.println("DENTRO DE IF VA A MONTO "+ tarifaSelecionada.getTipoDeEntrada().getNombre());
             }
-
             return true;
         }else {
             //PantallaDeVentaDeEntradas.detalleDeEntradas();
+            PantallaDeVentaDeEntradas.mostrarDetalleDeEntrada(0);
+            if (cantidadDeEntradas >= cantMaxVisitantes-alumnosConfirmados){
+                cantidadDeEntradas = cantMaxVisitantes-alumnosConfirmados;
+            }
+            System.out.println("CANTIDAD DE ENTRADAS EN GESTOR (en false): "+cantidadDeEntradas);
             return false;
         }
     }
@@ -325,17 +328,21 @@ public class GestorDeVentaDeEntradas  {
         if (confirmacionDeVenta) {
             this.crearEntrada();
         }
+        System.out.println("TOMAR CONF DE VENTA EN GESTOR: " + confirmacionDeVenta);
     }
 
     public void crearEntrada(){
-        Entrada[] entradas = new Entrada[entradasACrear.length];
-        for (int i = 0; i <= entradasACrear.length-1; i++){
-            entradas[i] = new Entrada(getDate(), getTime(), entradasACrear[i].getMonto(), entradasACrear[i].getNumero(), entradasACrear[i].getAsignacionVisitas(), this.sedes[1] , entradasACrear[i].getTarifa());
+        Entrada[] entradas = new Entrada[cantidadDeEntradas];
+        for (int i = 0; i <= cantidadDeEntradas-1; i++){
+            entradas[i] = new Entrada(getDate(), getTime(), (tarifaSelecionada.getMonto()+tarifaSelecionada.getMontoAdicionaGuia()), 1551, null, sedeActual , tarifaSelecionada);
         }
         for (Entrada e: entradas){
-            System.out.println("Entrada creada: "+e.getMonto());
+            System.out.println("Entrada creada monto: "+e.getMonto());
+            System.out.println("Entrada creada asign visitas: "+e.getAsignacionVisitas());
+            System.out.println("Entrada creada numero: "+e.getNumero());
+            System.out.println("Entrada creada tarifa: "+e.getTarifa().toString());
         }
-        this.actualizarCantVisitantes(entradasACrear.length);
+        this.actualizarCantVisitantes(cantidadDeEntradas);
     }
 
 //    public static void getId(){}

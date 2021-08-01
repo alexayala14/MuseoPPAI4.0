@@ -1,33 +1,27 @@
 package VistasFX;
 
 import Controlador.GestorDeVentaDeEntradas;
+import Modelos.Sede;
 import Modelos.TablaEntradas;
 import Modelos.Tarifa;
-import javafx.application.Application;
-import javafx.beans.InvalidationListener;
+import com.sun.javafx.scene.control.FakeFocusTextField;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import jdk.internal.icu.text.NormalizerBase;
 
 import java.io.IOException;
-import java.lang.invoke.MethodHandles;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.Optional;
 
 public class PantallaDeVentaDeEntradas {
     @FXML
@@ -42,7 +36,9 @@ public class PantallaDeVentaDeEntradas {
     private static TextField montoAdicionalGuiaCampo;
     private static Spinner<Integer> cantidadDeEntradas;
     private static Button agregarEntradasButton;
-    private static int supuestaCantidadMaxSede;
+
+    @FXML
+    private static Label errorLbl;
 
     @FXML
     private TableColumn<TablaEntradas, String> tipoEntradaCol = new TableColumn<>("Tipo Entrada");
@@ -66,6 +62,7 @@ public class PantallaDeVentaDeEntradas {
     private static float montoEntrada;
     private  int numeroEntrada;
     private static GestorDeVentaDeEntradas gestorDeVentaDeEntradas;
+    private int cantidadMaximaSede = GestorDeVentaDeEntradas.getInstance().cantMaxVisitantes;
     private Tarifa[] tarifas;
 
     //EJEMPLOS
@@ -75,7 +72,6 @@ public class PantallaDeVentaDeEntradas {
     private static ObservableList<TablaEntradas> listaTE = FXCollections.observableArrayList();
 
     private static TablaEntradas tablaDeEntradas;
-
     /*@Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("PantallaLogin.fxml"));
@@ -116,7 +112,7 @@ public class PantallaDeVentaDeEntradas {
         scene = new Scene(root);
         stage.setScene(scene);
 
-        supuestaCantidadMaxSede = 1000;
+//        supuestaCantidadMaxSede = 1000;
         GestorDeVentaDeEntradas gestorDeVentaDeEntradas = GestorDeVentaDeEntradas.getInstance();
         gestorDeVentaDeEntradas.registrarVentaDeEntrada();
         //agregarEntradasButton = (Button)scene.lookup("#agregarEntradaButton");
@@ -141,13 +137,13 @@ public class PantallaDeVentaDeEntradas {
         montoCampo = (TextField) scene.lookup("#montoTextField");
         montoAdicionalGuiaCampo = (TextField) scene.lookup("#montoAdicionalPorGuiaTextField");*/
 
-        cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
-        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas);
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, supuestaCantidadMaxSede);
-        valueFactory.setValue(0);
-        cantidadDeEntradas.setValueFactory(valueFactory);
-        cantidadDeEntradasSeleccionadas = cantidadDeEntradas.getValue();
-        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas.getValue());
+//        cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
+//        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas);
+//        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, supuestaCantidadMaxSede);
+//        valueFactory.setValue(0);
+//        cantidadDeEntradas.setValueFactory(valueFactory);
+//        cantidadDeEntradasSeleccionadas = cantidadDeEntradas.getValue();
+//        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas.getValue());
 
        /* ChangeListener listenerTarifa = ((observable, oldValue, newValue) -> {
             indiceSeleccionado =  tipoEntradaTipoVisita.getItems().indexOf(newValue);
@@ -157,20 +153,20 @@ public class PantallaDeVentaDeEntradas {
             tarifaSeleccionada = tarifas[indiceSeleccionado];
         });*/
 
-        ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
-            cantidadDeEntradasSeleccionadas = (int) newValue;
-            if (cantidadDeEntradasSeleccionadas == supuestaCantidadMaxSede){
-                System.out.println("NO SE PUEDEN AGREGAR MÁS ENTRADAS!!!");
-            }
-            System.out.println("LA CANTIDAD DE ENTRADAS SELECCIONAS EN PANTALLA "+cantidadDeEntradasSeleccionadas);
-            gestorDeVentaDeEntradas.tomarSeleccionDeEntradas(cantidadDeEntradasSeleccionadas);
-        });
+//        ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
+//            cantidadDeEntradasSeleccionadas = (int) newValue;
+//            if (cantidadDeEntradasSeleccionadas == supuestaCantidadMaxSede){
+//                System.out.println("NO SE PUEDEN AGREGAR MÁS ENTRADAS!!!");
+//            }
+//            System.out.println("LA CANTIDAD DE ENTRADAS SELECCIONAS EN PANTALLA "+cantidadDeEntradasSeleccionadas);
+//            gestorDeVentaDeEntradas.tomarSeleccionDeEntradas(cantidadDeEntradasSeleccionadas);
+//        });
 
         //tipoEntradaTipoVisita.valueProperty().addListener(listenerTarifa);
-       cantidadDeEntradas.valueProperty().addListener(listenerSpinner);
+//       cantidadDeEntradas.valueProperty().addListener(listenerSpinner);
 
-        Random rand = new Random();
-        numeroEntrada = rand.nextInt(10000);
+//        Random rand = new Random();
+//        numeroEntrada = rand.nextInt(10000);
 
 //        agregarEntradasButton.setOnMouseClicked((evento) -> {
 //            try {
@@ -183,6 +179,8 @@ public class PantallaDeVentaDeEntradas {
 
 //        listaEntradas.add(new Entrada(LocalDate.now(), LocalTime.now(), montoEntrada, numeroEntrada, gestorDeVentaDeEntradas.sedeActual, tarifaSeleccionada));
 
+        tomarSeleccionDeEntradas();
+
         stage.show();
     }
 
@@ -191,6 +189,31 @@ public class PantallaDeVentaDeEntradas {
             instance = new PantallaDeVentaDeEntradas();
         }
         return instance;
+    }
+
+    public static void tomarSeleccionDeEntradas(){
+//        cantidadMaximaSede =  gestorDeVentaDeEntradas.cantMaxVisitantes;
+        System.out.println("CANTIDAD MAXIMA SEDE: "+getInstance().cantidadMaximaSede);
+
+        cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
+        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas);
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, getInstance().cantidadMaximaSede);
+        valueFactory.setValue(0);
+        cantidadDeEntradas.setValueFactory(valueFactory);
+        cantidadDeEntradasSeleccionadas = cantidadDeEntradas.getValue();
+        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas.getValue());
+
+        ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
+            cantidadDeEntradasSeleccionadas = (int) newValue;
+            if (cantidadDeEntradasSeleccionadas >= getInstance().cantidadMaximaSede){
+                System.out.println("NO SE PUEDEN AGREGAR MÁS ENTRADAS!!!");
+                cantidadDeEntradas.getValueFactory().setValue(getInstance().cantidadMaximaSede);
+            }
+            System.out.println("LA CANTIDAD DE ENTRADAS SELECCIONAS EN PANTALLA "+cantidadDeEntradasSeleccionadas);
+            gestorDeVentaDeEntradas.tomarSeleccionDeEntradas(cantidadDeEntradasSeleccionadas);
+        });
+
+        cantidadDeEntradas.valueProperty().addListener(listenerSpinner);
     }
 
     public static void mostrarTarifas(Tarifa[] tarifas){
@@ -224,67 +247,67 @@ public class PantallaDeVentaDeEntradas {
            gestorDeVentaDeEntradas.tomarSeleccionTarifa(tarifaSeleccionada);
         });
         tipoEntradaTipoVisita.valueProperty().addListener(listenerTarifa);
-
-    }
-
-    public static void tomarSeleccionDeEntradas(){
-        /*supuestaCantidadMaxSede=1000;
-        cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, supuestaCantidadMaxSede);
-        valueFactory.setValue(0);
-        cantidadDeEntradas.setValueFactory(valueFactory);
-        cantidadDeEntradasSeleccionadas = cantidadDeEntradas.getValue();
-
-        ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
-            cantidadDeEntradasSeleccionadas = (int) newValue;
-            if (cantidadDeEntradasSeleccionadas == supuestaCantidadMaxSede){
-                System.out.println("NO SE PUEDEN AGREGAR MÁS ENTRADAS!!!");
-            }
-            gestorDeVentaDeEntradas.tomarSeleccionDeEntradas(cantidadDeEntradasSeleccionadas);
-        });
-
-        cantidadDeEntradas.valueProperty().addListener(listenerSpinner);
-
-        Random rand = new Random();
-        numeroEntrada = rand.nextInt(10000);*/
-
-
-
-
     }
 
     public static void mostrarDetalleDeEntrada(float monto){
-        listaTE = FXCollections.observableArrayList();
-        tablaEntradas = (TableView<TablaEntradas>)scene.lookup("#tablaEntradas");
+        errorLbl = (Label)scene.lookup("#errorLbl");
+        if (monto == 0){
+            errorLbl.setVisible(true);
 
-        System.out.println("EL MONTO DENTRO DE DETALLE ES "+ monto);
+            int ultimoValor = cantidadDeEntradas.getValueFactory().getValue();
+            cantidadDeEntradas.getValueFactory().setValue(ultimoValor-1);
+        } else {
+            errorLbl.setVisible(false);
 
-        tablaDeEntradas = new TablaEntradas(
-                tarifaSeleccionada.getTipoDeEntrada().getNombre(),
-                tarifaSeleccionada.getTipoVisita().getNombre(),
-                tarifaSeleccionada.getMonto(),
-                tarifaSeleccionada.getMontoAdicionaGuia(),
-                cantidadDeEntradasSeleccionadas,
-                monto
-        );
+            listaTE = FXCollections.observableArrayList();
+            tablaEntradas = (TableView<TablaEntradas>) scene.lookup("#tablaEntradas");
 
-        listaTE.add(tablaDeEntradas);
+            System.out.println("EL MONTO DENTRO DE DETALLE ES: " + monto);
 
-        getInstance().tipoEntradaCol.setCellValueFactory(new PropertyValueFactory<>("stringEntrada"));
-        getInstance().tipoVisitaCol.setCellValueFactory(new PropertyValueFactory<>("stringVisita"));
-        getInstance().montoCol.setCellValueFactory(new PropertyValueFactory<>("monto"));
-        getInstance().montoAdicionalGuiaCol.setCellValueFactory(new PropertyValueFactory<>("montoAdicionalGuia"));
-        getInstance().cantidadEntradasCol.setCellValueFactory(new PropertyValueFactory<>("cantidadEntradas"));
-        getInstance().montoTotalCol.setCellValueFactory(new PropertyValueFactory<>("montoTotal"));
+            tablaDeEntradas = new TablaEntradas(
+                    tarifaSeleccionada.getTipoDeEntrada().getNombre(),
+                    tarifaSeleccionada.getTipoVisita().getNombre(),
+                    tarifaSeleccionada.getMonto(),
+                    tarifaSeleccionada.getMontoAdicionaGuia(),
+                    cantidadDeEntradasSeleccionadas,
+                    monto
+            );
 
-        if (tablaEntradas.getColumns().size() == 0){
-            tablaEntradas.getColumns().addAll(getInstance().tipoEntradaCol, getInstance().tipoVisitaCol, getInstance().montoCol, getInstance().montoAdicionalGuiaCol, getInstance().cantidadEntradasCol, getInstance().montoTotalCol);
+            listaTE.add(tablaDeEntradas);
+
+            getInstance().tipoEntradaCol.setCellValueFactory(new PropertyValueFactory<>("stringEntrada"));
+            getInstance().tipoVisitaCol.setCellValueFactory(new PropertyValueFactory<>("stringVisita"));
+            getInstance().montoCol.setCellValueFactory(new PropertyValueFactory<>("monto"));
+            getInstance().montoAdicionalGuiaCol.setCellValueFactory(new PropertyValueFactory<>("montoAdicionalGuia"));
+            getInstance().cantidadEntradasCol.setCellValueFactory(new PropertyValueFactory<>("cantidadEntradas"));
+            getInstance().montoTotalCol.setCellValueFactory(new PropertyValueFactory<>("montoTotal"));
+
+            if (tablaEntradas.getColumns().size() == 0) {
+                tablaEntradas.getColumns().addAll(getInstance().tipoEntradaCol, getInstance().tipoVisitaCol, getInstance().montoCol, getInstance().montoAdicionalGuiaCol, getInstance().cantidadEntradasCol, getInstance().montoTotalCol);
+            }
+
+            tablaEntradas.setItems(listaTE);
         }
-
-        tablaEntradas.setItems(listaTE);
-
     }
 
+    public boolean tomarConfirmacionDeVenta(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("CONFIRMACION DE VENTA");
+        String s = "Desea confirmar la venta de las entradas?";
+        alert.setContentText(s);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+            System.out.println("RESULTADO: "+result.get());
+            gestorDeVentaDeEntradas.getInstance().tomarConfirmacionDeVenta(true);
+            return true;
+        } else {
+            System.out.println("RESULTADO: "+result.get());
+            gestorDeVentaDeEntradas.getInstance().tomarConfirmacionDeVenta(false);
+            return false;
+        }
+    }
 
 }
 
