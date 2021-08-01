@@ -31,9 +31,9 @@ public class PantallaDeVentaDeEntradas implements Initializable {
     private static ComboBox<Tarifa> tipoEntradaTipoVisita;
     private static TextField montoCampo;
     private static TextField montoAdicionalGuiaCampo;
-    private Spinner<Integer> cantidadDeEntradas;
-    private Button agregarEntradasButton;
-    private int supuestaCantidadMaxSede;
+    private static Spinner<Integer> cantidadDeEntradas;
+    private static Button agregarEntradasButton;
+    private static int supuestaCantidadMaxSede;
 
 //    @FXML
 //    private TableView<String> tablaEntradas = new TableView<String>(){};
@@ -55,7 +55,7 @@ public class PantallaDeVentaDeEntradas implements Initializable {
     private static Tarifa tarifaSeleccionada = new Tarifa();
 
     private static float montoEntrada;
-    private int numeroEntrada;
+    private  int numeroEntrada;
     private static GestorDeVentaDeEntradas gestorDeVentaDeEntradas;
     private Tarifa[] tarifas;
 
@@ -110,10 +110,11 @@ public class PantallaDeVentaDeEntradas implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
 
-        //int supuestaCantidadMaxSede = 1000;
+        supuestaCantidadMaxSede = 1000;
         GestorDeVentaDeEntradas gestorDeVentaDeEntradas = GestorDeVentaDeEntradas.getInstance();
         gestorDeVentaDeEntradas.registrarVentaDeEntrada();
-
+        //agregarEntradasButton = (Button)scene.lookup("#agregarEntradaButton");
+        //tomarSeleccionDeEntradas();
         /*Tarifa[] tarifas = gestorDeVentaDeEntradas.buscarTarifas();
         ArrayList<String> tiposDeEntradasYVisitas = new ArrayList<>();
         ArrayList<Float> montos = new ArrayList<>();
@@ -126,7 +127,7 @@ public class PantallaDeVentaDeEntradas implements Initializable {
             montosPorGuia.add(t.getMontoAdicionaGuia());
         }*/
 
-        agregarEntradasButton = (Button)scene.lookup("#agregarEntradaButton");
+        /*agregarEntradasButton = (Button)scene.lookup("#agregarEntradaButton");*/
 
         /*tipoEntradaTipoVisita = (ComboBox)scene.lookup("#tiposEntradaVisitaCombo");
         tipoEntradaTipoVisita.getItems().addAll(tarifas);
@@ -134,11 +135,13 @@ public class PantallaDeVentaDeEntradas implements Initializable {
         montoCampo = (TextField) scene.lookup("#montoTextField");
         montoAdicionalGuiaCampo = (TextField) scene.lookup("#montoAdicionalPorGuiaTextField");*/
 
-       /* cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
+        cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
+        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas);
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, supuestaCantidadMaxSede);
         valueFactory.setValue(0);
         cantidadDeEntradas.setValueFactory(valueFactory);
-        cantidadDeEntradasSeleccionadas = cantidadDeEntradas.getValue();*/
+        cantidadDeEntradasSeleccionadas = cantidadDeEntradas.getValue();
+        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas.getValue());
 
        /* ChangeListener listenerTarifa = ((observable, oldValue, newValue) -> {
             indiceSeleccionado =  tipoEntradaTipoVisita.getItems().indexOf(newValue);
@@ -148,18 +151,20 @@ public class PantallaDeVentaDeEntradas implements Initializable {
             tarifaSeleccionada = tarifas[indiceSeleccionado];
         });*/
 
-        /*ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
+        ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
             cantidadDeEntradasSeleccionadas = (int) newValue;
             if (cantidadDeEntradasSeleccionadas == supuestaCantidadMaxSede){
                 System.out.println("NO SE PUEDEN AGREGAR MÁS ENTRADAS!!!");
             }
-        });*/
+            System.out.println("LA CANTIDAD DE ENTRADAS SELECCIONAS EN PANTALLA "+cantidadDeEntradasSeleccionadas);
+            gestorDeVentaDeEntradas.tomarSeleccionDeEntradas(cantidadDeEntradasSeleccionadas);
+        });
 
         //tipoEntradaTipoVisita.valueProperty().addListener(listenerTarifa);
-        /*cantidadDeEntradas.valueProperty().addListener(listenerSpinner);
+       cantidadDeEntradas.valueProperty().addListener(listenerSpinner);
 
         Random rand = new Random();
-        numeroEntrada = rand.nextInt(10000);*/
+        numeroEntrada = rand.nextInt(10000);
 
 //        agregarEntradasButton.setOnMouseClicked((evento) -> {
 //            try {
@@ -201,14 +206,15 @@ public class PantallaDeVentaDeEntradas implements Initializable {
             montoAdicionalGuiaCampo.setText(String.valueOf(tarifas[indiceSeleccionado].getMontoAdicionaGuia()));
             montoEntrada = tarifas[indiceSeleccionado].getMonto() + tarifas[indiceSeleccionado].getMontoAdicionaGuia();
             tarifaSeleccionada = tarifas[indiceSeleccionado];
-            gestorDeVentaDeEntradas.tomarSeleccionTarifa(tarifaSeleccionada);
+            System.out.println("LA TARIFA SELECCIONADA EN MOSTRAR TARIFA ES : "+ tarifaSeleccionada.getTipoDeEntrada().getNombre());
+           gestorDeVentaDeEntradas.tomarSeleccionTarifa(tarifaSeleccionada);
         });
         tipoEntradaTipoVisita.valueProperty().addListener(listenerTarifa);
 
     }
 
-    public void tomarSeleccionDeEntradas(){
-        supuestaCantidadMaxSede=1000;
+    public static void tomarSeleccionDeEntradas(){
+        /*supuestaCantidadMaxSede=1000;
         cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, supuestaCantidadMaxSede);
         valueFactory.setValue(0);
@@ -226,7 +232,7 @@ public class PantallaDeVentaDeEntradas implements Initializable {
         cantidadDeEntradas.valueProperty().addListener(listenerSpinner);
 
         Random rand = new Random();
-        numeroEntrada = rand.nextInt(10000);
+        numeroEntrada = rand.nextInt(10000);*/
 
 
 
@@ -234,16 +240,18 @@ public class PantallaDeVentaDeEntradas implements Initializable {
     }
 
     public void agregarEntrada() throws IOException{
+        listaTE = FXCollections.observableArrayList();
         tablaDeEntradas = new TablaEntradas(
-                this.tarifaSeleccionada.getTipoDeEntrada().getNombre(),
-                this.tarifaSeleccionada.getTipoVisita().getNombre(),
-                this.tarifaSeleccionada.getMonto(),
-                this.tarifaSeleccionada.getMontoAdicionaGuia(),
-                this.cantidadDeEntradasSeleccionadas,
+                tarifaSeleccionada.getTipoDeEntrada().getNombre(),
+                tarifaSeleccionada.getTipoVisita().getNombre(),
+                tarifaSeleccionada.getMonto(),
+                tarifaSeleccionada.getMontoAdicionaGuia(),
+                cantidadDeEntradasSeleccionadas,
                 500
                 );
         System.out.println("TIPO DE ENTRADA EN TABLAENTRADAS: " + tablaDeEntradas.getStringEntrada());
 //        System.out.println("Tarifa Seleccionada: " + tarifaSeleccionada);
+
 
         listaTE.add(tablaDeEntradas);
 
@@ -254,9 +262,9 @@ public class PantallaDeVentaDeEntradas implements Initializable {
         montoAdicionalGuiaCol.setCellValueFactory(new PropertyValueFactory<>("montoAdicionalGuia"));
         cantidadEntradasCol.setCellValueFactory(new PropertyValueFactory<>("cantidadEntradas"));
         montoTotalCol.setCellValueFactory(new PropertyValueFactory<>("montoTotal"));
-
-
         tablaEntradas.setItems(listaTE);
+        //System.out.println("EL TAMAÑO ES DE LISTA TE "+listaTE.size());
+
 
     }
 
