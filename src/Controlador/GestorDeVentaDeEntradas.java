@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelos.*;
 import VistasFX.PantallaDeVentaDeEntradas;
+import javafx.event.ActionEvent;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -271,7 +272,7 @@ public class GestorDeVentaDeEntradas  {
         return cantidadDeEntradas;
     }
 
-    public  boolean validarCantidadDeEntradas(int cantidadDeEntradas){
+    public boolean validarCantidadDeEntradas(int cantidadDeEntradas){
         int alumnosConfirmados = 0;//Poner arriba como atributo
         for(ReservaVisita e:this.reservasVisita){
             if(e.esSedeActual(this.sedes[1]) && e.validaHorario(e.getHoraInicioReal(), e.getHoraFinReal())){
@@ -280,12 +281,18 @@ public class GestorDeVentaDeEntradas  {
         }
         int cantMaxVisitantes = this.sedes[1].getCantMaximaVisitantes(); //Poner arriba como atributo
 
+
         System.out.println("ALUMNOS CONFIRMADOS"+alumnosConfirmados+"  Cantidad Maxima: "+cantMaxVisitantes);
         if(esMenorCantidadMaximaVisitantes(alumnosConfirmados, cantMaxVisitantes, cantidadDeEntradas)){
             //this.calcularMontoTotal(cantidadDeEntradas,tarifaSelecionada);
             //PantallaDeVentaDeEntradas.detalleDeEntradas();
-            PantallaDeVentaDeEntradas.mostrarDetalleDeEntrada(this.calcularMontoTotal(cantidadDeEntradas,tarifaSelecionada));
-            System.out.println("DENTRO DE IF VA A MONTO "+ tarifaSelecionada.getTipoDeEntrada().getNombre());
+
+            //VERIFICAR QUE TARIFA SELECCIONADA NO SEA NULL
+            if (tarifaSelecionada != null){
+                PantallaDeVentaDeEntradas.mostrarDetalleDeEntrada(this.calcularMontoTotal(cantidadDeEntradas,tarifaSelecionada));
+                System.out.println("DENTRO DE IF VA A MONTO "+ tarifaSelecionada.getTipoDeEntrada().getNombre());
+            }
+
             return true;
         }else {
             //PantallaDeVentaDeEntradas.detalleDeEntradas();
