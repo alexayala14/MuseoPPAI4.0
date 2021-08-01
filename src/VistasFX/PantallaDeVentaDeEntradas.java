@@ -72,39 +72,7 @@ public class PantallaDeVentaDeEntradas {
     private static ObservableList<TablaEntradas> listaTE = FXCollections.observableArrayList();
 
     private static TablaEntradas tablaDeEntradas;
-    /*@Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("PantallaLogin.fxml"));
-        Scene scene = new Scene(root);
-        stage.setTitle("Museo Pictórico");
 
-        Image icon = new Image("/Imagenes/icon.png");
-        stage.getIcons().add(icon);
-
-        stage.setScene(scene);
-        stage.show();
-    }*/
-
-   /* public static void main(String[] args){
-        gestorDeVentaDeEntradas = GestorDeVentaDeEntradas.getInstance();
-        //launch(args);
-    }*/
-
-  /*  public void switchToLogin(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("PantallaLogin.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }*/
-
-    /*public void switchToFirstScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("PantallaInicio.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }*/
 
     public void habilitarVentana(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("PantallaRegistrarVentaDeEntradas.fxml"));

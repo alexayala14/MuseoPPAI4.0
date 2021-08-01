@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Random;
 
 public class GestorDeVentaDeEntradas  {
 
@@ -332,11 +333,14 @@ public class GestorDeVentaDeEntradas  {
     }
 
     public void crearEntrada(){
+        Random rand = new Random();
+        int numeroEntrada = rand.nextInt(10000);
         Entrada[] entradas = new Entrada[cantidadDeEntradas];
         for (int i = 0; i <= cantidadDeEntradas-1; i++){
-            entradas[i] = new Entrada(getDate(), getTime(), (tarifaSelecionada.getMonto()+tarifaSelecionada.getMontoAdicionaGuia()), 1551, null, sedeActual , tarifaSelecionada);
+            entradas[i] = new Entrada(getDate(), getTime(), (tarifaSelecionada.getMonto()+tarifaSelecionada.getMontoAdicionaGuia()), numeroEntrada+i, null, sedeActual , tarifaSelecionada);
         }
         for (Entrada e: entradas){
+            System.out.println("Entrada creada fecha: "+e.getFechaVenta());
             System.out.println("Entrada creada monto: "+e.getMonto());
             System.out.println("Entrada creada asign visitas: "+e.getAsignacionVisitas());
             System.out.println("Entrada creada numero: "+e.getNumero());
