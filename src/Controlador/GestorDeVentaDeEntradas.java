@@ -12,6 +12,7 @@ public class GestorDeVentaDeEntradas  {
     public LocalTime horaHoy = LocalTime.now();
     private Tarifa[] tarifas;
     private Tarifa tarifa;
+    private static Tarifa tarifaSelecionada;
     /*private PantallaDeVentaDeEntradas pantallaDeVentaDeEntradas;
     private PantallaRegistrarVentaDeEntradas pantallaRegistrarVentaDeEntradas;*/
     private float duracionEstimada;
@@ -252,7 +253,8 @@ public class GestorDeVentaDeEntradas  {
     public static Tarifa tomarSeleccionTarifa(Tarifa tarifa){
         //tarifa = tarifa;
         //System.out.printf("ESTA ES LA TARIFA SELECCIONADA EN GESTOR "+ tarifa.getTipoDeEntrada().getNombre());
-        return tarifa;
+        tarifaSelecionada = tarifa;
+        return tarifaSelecionada;
     }
 
     public float calcularDuracionEstimada(){
@@ -280,8 +282,10 @@ public class GestorDeVentaDeEntradas  {
 
         System.out.println("ALUMNOS CONFIRMADOS"+alumnosConfirmados+"  Cantidad Maxima: "+cantMaxVisitantes);
         if(esMenorCantidadMaximaVisitantes(alumnosConfirmados, cantMaxVisitantes, cantidadDeEntradas)){
-            //this.calcularMontoTotal(cantidadDeEntradas,tarifa);
+            //this.calcularMontoTotal(cantidadDeEntradas,tarifaSelecionada);
             //PantallaDeVentaDeEntradas.detalleDeEntradas();
+            PantallaDeVentaDeEntradas.mostrarDetalleDeEntrada(this.calcularMontoTotal(cantidadDeEntradas,tarifaSelecionada));
+            System.out.println("DENTRO DE IF VA A MONTO "+ tarifaSelecionada.getTipoDeEntrada().getNombre());
             return true;
         }else {
             //PantallaDeVentaDeEntradas.detalleDeEntradas();

@@ -24,6 +24,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class PantallaDeVentaDeEntradas implements Initializable {
+    private static TableView<TablaEntradas> tablaEntradas;
     public Button ingresar;
     private static Scene scene;
     private static Stage stage;
@@ -40,15 +41,15 @@ public class PantallaDeVentaDeEntradas implements Initializable {
 //    @FXML
 //    private TableColumn<String, String> tipoEntradaCol = new TableColumn<String, String>();
     @FXML
-    private TableColumn<TablaEntradas, String> tipoVisitaCol = new TableColumn<TablaEntradas, String>();
+    private static TableColumn<TablaEntradas, String> tipoVisitaCol = new TableColumn<TablaEntradas, String>();
     @FXML
-    private TableColumn<Tarifa, Integer> montoCol = new TableColumn<Tarifa, Integer>();
+    private static TableColumn<Tarifa, Integer> montoCol = new TableColumn<Tarifa, Integer>();
     @FXML
-    private TableColumn<Tarifa, Integer> montoAdicionalGuiaCol = new TableColumn<Tarifa, Integer>();
+    private static TableColumn<Tarifa, Integer> montoAdicionalGuiaCol = new TableColumn<Tarifa, Integer>();
     @FXML
-    private TableColumn<Integer, Integer> cantidadEntradasCol = new TableColumn<Integer, Integer>();
+    private static TableColumn<Integer, Integer> cantidadEntradasCol = new TableColumn<Integer, Integer>();
     @FXML
-    private TableColumn<Integer, Integer> montoTotalCol = new TableColumn<Integer, Integer>();
+    private static TableColumn<Integer, Integer> montoTotalCol = new TableColumn<Integer, Integer>();
 
     private static int indiceSeleccionado;
     private static int cantidadDeEntradasSeleccionadas;
@@ -60,15 +61,15 @@ public class PantallaDeVentaDeEntradas implements Initializable {
     private Tarifa[] tarifas;
 
     //EJEMPLOS
-    @FXML
-    private TableView<TablaEntradas> tablaEntradas = new TableView<TablaEntradas>();
+   /* @FXML
+    TableView<TablaEntradas> tablaEntradas = new TableView<>();*/
 
     @FXML
-    private TableColumn<TablaEntradas, String> tipoEntradaCol = new TableColumn<TablaEntradas, String>();
+    private static TableColumn<TablaEntradas, String> tipoEntradaCol = new TableColumn<TablaEntradas, String>();
 
-    ObservableList<TablaEntradas> listaTE = FXCollections.observableArrayList();
+    static ObservableList<TablaEntradas> listaTE = FXCollections.observableArrayList();
 
-    TablaEntradas tablaDeEntradas;
+    static TablaEntradas tablaDeEntradas;
 
     /*@Override
     public void start(Stage stage) throws Exception {
@@ -239,7 +240,15 @@ public class PantallaDeVentaDeEntradas implements Initializable {
 
     }
 
-    public void agregarEntrada() throws IOException{
+    public static void mostrarDetalleDeEntrada(float monto){
+        tablaEntradas = new TableView<TablaEntradas>();
+        tipoEntradaCol = new TableColumn<TablaEntradas, String>();
+        tipoVisitaCol = new TableColumn<TablaEntradas, String>();
+        montoCol = new TableColumn<Tarifa, Integer>();
+        montoAdicionalGuiaCol = new TableColumn<Tarifa, Integer>();
+        cantidadEntradasCol = new TableColumn<Integer, Integer>();
+      montoTotalCol = new TableColumn<Integer, Integer>();
+        System.out.println("EL MONTO DENTRO DE DETALLE ES "+ monto);
         listaTE = FXCollections.observableArrayList();
         tablaDeEntradas = new TablaEntradas(
                 tarifaSeleccionada.getTipoDeEntrada().getNombre(),
@@ -247,13 +256,16 @@ public class PantallaDeVentaDeEntradas implements Initializable {
                 tarifaSeleccionada.getMonto(),
                 tarifaSeleccionada.getMontoAdicionaGuia(),
                 cantidadDeEntradasSeleccionadas,
-                500
+                monto
                 );
         System.out.println("TIPO DE ENTRADA EN TABLAENTRADAS: " + tablaDeEntradas.getStringEntrada());
 //        System.out.println("Tarifa Seleccionada: " + tarifaSeleccionada);
 
-
+        System.out.println("ANTES LISTA TE "+listaTE.size());
+        System.out.println("ANTES LISTA TE "+listaTE.toString());
         listaTE.add(tablaDeEntradas);
+        System.out.println("DESPUES LISTA TE "+listaTE.size());
+        System.out.println("DESPUES LISTA TE "+listaTE.toString());
 
 
         tipoEntradaCol.setCellValueFactory(new PropertyValueFactory<>("stringEntrada"));
@@ -262,7 +274,10 @@ public class PantallaDeVentaDeEntradas implements Initializable {
         montoAdicionalGuiaCol.setCellValueFactory(new PropertyValueFactory<>("montoAdicionalGuia"));
         cantidadEntradasCol.setCellValueFactory(new PropertyValueFactory<>("cantidadEntradas"));
         montoTotalCol.setCellValueFactory(new PropertyValueFactory<>("montoTotal"));
+        System.out.printf("NO SE QUE TIENE LA TABLA "+tablaEntradas.getItems()+"\n");
         tablaEntradas.setItems(listaTE);
+
+        System.out.printf("NO SE QUE TIENE LA TABLA "+tablaEntradas.getItems()+"\n");
         //System.out.println("EL TAMAÑO ES DE LISTA TE "+listaTE.size());
 
 
