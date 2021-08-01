@@ -24,6 +24,7 @@ public class GestorDeVentaDeEntradas  {
     private Entrada[] entradasACrear;
     private int cantidadPersonasEnSede;
     private static GestorDeVentaDeEntradas instance;
+    private static int cantidadDeEntradas;
 
     public GestorDeVentaDeEntradas() {
         //"BASE DE DATOS"
@@ -219,8 +220,9 @@ public class GestorDeVentaDeEntradas  {
 //        tomarSeleccionTarifa();
         duracionEstimada= this.calcularDuracionEstimada();
         System.out.println("LA DURACION ESTIMADA EN VARIABLE ES:" + this.duracionEstimada);
+
 //        tomarSeleccionDeEntradas();
-        //validarCantidadDeEntradas(tomarSeleccionDeEntradas(4), tomarSeleccionTarifa(tarifa));
+        /*validarCantidadDeEntradas(cantidadDeEntradas);*/
         tomarConfirmacionDeVenta(true);
 //        getId();
         getDate();
@@ -262,10 +264,12 @@ public class GestorDeVentaDeEntradas  {
     public static int tomarSeleccionDeEntradas(int cantidadEntradas){
 
         System.out.println("ESTOY EN SELECCION DEENTRASDA "+ cantidadEntradas);
-        return cantidadEntradas;
+        cantidadDeEntradas=cantidadEntradas;
+        System.out.println("ES VERDADEROOOOOOOOOO: "+getInstance().validarCantidadDeEntradas(cantidadDeEntradas));
+        return cantidadDeEntradas;
     }
 
-    public void validarCantidadDeEntradas(int cantidadDeEntradas, Tarifa tarifa){
+    public  boolean validarCantidadDeEntradas(int cantidadDeEntradas){
         int alumnosConfirmados = 0;//Poner arriba como atributo
         for(ReservaVisita e:this.reservasVisita){
             if(e.esSedeActual(this.sedes[1]) && e.validaHorario(e.getHoraInicioReal(), e.getHoraFinReal())){
@@ -273,11 +277,15 @@ public class GestorDeVentaDeEntradas  {
             }
         }
         int cantMaxVisitantes = this.sedes[1].getCantMaximaVisitantes(); //Poner arriba como atributo
+
+        System.out.println("ALUMNOS CONFIRMADOS"+alumnosConfirmados+"  Cantidad Maxima: "+cantMaxVisitantes);
         if(esMenorCantidadMaximaVisitantes(alumnosConfirmados, cantMaxVisitantes, cantidadDeEntradas)){
             //this.calcularMontoTotal(cantidadDeEntradas,tarifa);
             //PantallaDeVentaDeEntradas.detalleDeEntradas();
+            return true;
         }else {
             //PantallaDeVentaDeEntradas.detalleDeEntradas();
+            return false;
         }
     }
 
