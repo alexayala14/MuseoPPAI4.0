@@ -2,7 +2,6 @@ package Controlador;
 
 import Modelos.*;
 import VistasFX.PantallaDeVentaDeEntradas;
-import javafx.event.ActionEvent;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -230,7 +229,7 @@ public class GestorDeVentaDeEntradas  {
         getDate();
 //        getMonto();
 //        imprimirEntrada();
-        finCasoUso();
+//        finCasoUso();
     }
 
     public Tarifa[] buscarTarifas(){
@@ -346,10 +345,12 @@ public class GestorDeVentaDeEntradas  {
             System.out.println("Entrada creada numero: "+e.getNumero());
             System.out.println("Entrada creada tarifa: "+e.getTarifa().toString());
         }
+        PantallaDeVentaDeEntradas.getInstance().imprimir();
+        System.out.println("SE ACTUALIZARON LA CANTIDAD DE VISITANTES DE: "+cantidadPersonasEnSede);
         this.actualizarCantVisitantes(cantidadDeEntradas);
+        System.out.println("SE ACTUALIZARON LA CANTIDAD DE VISITANTES DE: "+cantidadPersonasEnSede);
+        finCasoUso();
     }
-
-//    public static void getId(){}
 
     public LocalDate getDate(){
         return LocalDate.now();
@@ -359,21 +360,12 @@ public class GestorDeVentaDeEntradas  {
         return LocalTime.now();
     }
 
-//    public static void getMonto(){}
-
-//    public void imprimirEntrada(){}
-
     public void actualizarCantVisitantes(int cantidadDeEntradas){
         this.cantidadPersonasEnSede += cantidadDeEntradas;
     }
 
     public void finCasoUso(){
         System.out.println("Este es el fin del caso de uso");
+        PantallaDeVentaDeEntradas.getInstance().cerrarVentana();
     }
-
- /*   @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }*/
-
 }

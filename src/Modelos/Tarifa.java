@@ -1,8 +1,6 @@
 package Modelos;
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class Tarifa {
     LocalDate fechaFinVigencia;
@@ -131,11 +129,12 @@ public class Tarifa {
 
         //TARIFAS
 
-        Tarifa[] tarifas=new Tarifa[4];
-        tarifas[0]=new Tarifa(LocalDate.of(2021,9,22),LocalDate.of(2021,7,20),50,20,tipoDeEntradas[0],tipoVisitas[0]);
+        Tarifa[] tarifas=new Tarifa[5];
+        tarifas[0]=new Tarifa(LocalDate.of(2021,9,22),LocalDate.of(2021,7,20),50,0,tipoDeEntradas[0],tipoVisitas[0]);
         tarifas[1]=new Tarifa(LocalDate.of(2021,8,22),LocalDate.of(2021,5,20),60,8,tipoDeEntradas[1],tipoVisitas[1]);
-        tarifas[2]=new Tarifa(LocalDate.of(2021,3,22),LocalDate.of(2021,3,20),70,10,tipoDeEntradas[2],tipoVisitas[2]);
+        tarifas[2]=new Tarifa(LocalDate.of(2021,3,22),LocalDate.of(2021,3,20),70,0,tipoDeEntradas[2],tipoVisitas[2]);
         tarifas[3]=new Tarifa(LocalDate.of(2021,2,22),LocalDate.of(2021,2,20),80,15,tipoDeEntradas[3],tipoVisitas[3]);
+        tarifas[4]=new Tarifa(LocalDate.of(2021,10,22),LocalDate.of(2021,2,20),80,0,tipoDeEntradas[0],tipoVisitas[2]);
 
         return tarifas;
     }

@@ -1,10 +1,9 @@
 package VistasFX;
 
 import Controlador.GestorDeVentaDeEntradas;
-import Modelos.Sede;
 import Modelos.TablaEntradas;
 import Modelos.Tarifa;
-import com.sun.javafx.scene.control.FakeFocusTextField;
+import javafx.animation.PauseTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import jdk.internal.icu.text.NormalizerBase;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class PantallaDeVentaDeEntradas {
     private static TextField montoCampo;
     private static TextField montoAdicionalGuiaCampo;
     private static Spinner<Integer> cantidadDeEntradas;
-    private static Button agregarEntradasButton;
+    private static Button registrarEntradasBtn;
 
     @FXML
     private static Label errorLbl;
@@ -73,6 +72,16 @@ public class PantallaDeVentaDeEntradas {
 
     private static TablaEntradas tablaDeEntradas;
 
+    public void cerrarVentana() {
+        try {
+            root = FXMLLoader.load(getClass().getResource("PantallaInicio.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public void habilitarVentana(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("PantallaRegistrarVentaDeEntradas.fxml"));
@@ -80,72 +89,8 @@ public class PantallaDeVentaDeEntradas {
         scene = new Scene(root);
         stage.setScene(scene);
 
-//        supuestaCantidadMaxSede = 1000;
         GestorDeVentaDeEntradas gestorDeVentaDeEntradas = GestorDeVentaDeEntradas.getInstance();
         gestorDeVentaDeEntradas.registrarVentaDeEntrada();
-        //agregarEntradasButton = (Button)scene.lookup("#agregarEntradaButton");
-        //tomarSeleccionDeEntradas();
-        /*Tarifa[] tarifas = gestorDeVentaDeEntradas.buscarTarifas();
-        ArrayList<String> tiposDeEntradasYVisitas = new ArrayList<>();
-        ArrayList<Float> montos = new ArrayList<>();
-        ArrayList<Float> montosPorGuia = new ArrayList<>();
-
-        for (Tarifa t: tarifas){
-            System.out.println("Tarifa en pantalla: "+ t.toString());
-            tiposDeEntradasYVisitas.add("Tipo de Entrada: " + t.getTipoDeEntrada().getNombre() + " | Tipo de Visita: " + t.getTipoVisita().getNombre());
-            montos.add(t.getMonto());
-            montosPorGuia.add(t.getMontoAdicionaGuia());
-        }*/
-
-        /*agregarEntradasButton = (Button)scene.lookup("#agregarEntradaButton");*/
-
-        /*tipoEntradaTipoVisita = (ComboBox)scene.lookup("#tiposEntradaVisitaCombo");
-        tipoEntradaTipoVisita.getItems().addAll(tarifas);
-
-        montoCampo = (TextField) scene.lookup("#montoTextField");
-        montoAdicionalGuiaCampo = (TextField) scene.lookup("#montoAdicionalPorGuiaTextField");*/
-
-//        cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
-//        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas);
-//        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, supuestaCantidadMaxSede);
-//        valueFactory.setValue(0);
-//        cantidadDeEntradas.setValueFactory(valueFactory);
-//        cantidadDeEntradasSeleccionadas = cantidadDeEntradas.getValue();
-//        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas.getValue());
-
-       /* ChangeListener listenerTarifa = ((observable, oldValue, newValue) -> {
-            indiceSeleccionado =  tipoEntradaTipoVisita.getItems().indexOf(newValue);
-            montoCampo.setText(String.valueOf(tarifas[indiceSeleccionado].getMonto()));
-            montoAdicionalGuiaCampo.setText(String.valueOf(tarifas[indiceSeleccionado].getMontoAdicionaGuia()));
-            montoEntrada = tarifas[indiceSeleccionado].getMonto() + tarifas[indiceSeleccionado].getMontoAdicionaGuia();
-            tarifaSeleccionada = tarifas[indiceSeleccionado];
-        });*/
-
-//        ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
-//            cantidadDeEntradasSeleccionadas = (int) newValue;
-//            if (cantidadDeEntradasSeleccionadas == supuestaCantidadMaxSede){
-//                System.out.println("NO SE PUEDEN AGREGAR MÁS ENTRADAS!!!");
-//            }
-//            System.out.println("LA CANTIDAD DE ENTRADAS SELECCIONAS EN PANTALLA "+cantidadDeEntradasSeleccionadas);
-//            gestorDeVentaDeEntradas.tomarSeleccionDeEntradas(cantidadDeEntradasSeleccionadas);
-//        });
-
-        //tipoEntradaTipoVisita.valueProperty().addListener(listenerTarifa);
-//       cantidadDeEntradas.valueProperty().addListener(listenerSpinner);
-
-//        Random rand = new Random();
-//        numeroEntrada = rand.nextInt(10000);
-
-//        agregarEntradasButton.setOnMouseClicked((evento) -> {
-//            try {
-//                agregarEntrada(this.tarifaSeleccionada);
-//            } catch (IOException e) {
-//                System.out.println("ERROR: ");
-//                e.printStackTrace();
-//            }
-//        });
-
-//        listaEntradas.add(new Entrada(LocalDate.now(), LocalTime.now(), montoEntrada, numeroEntrada, gestorDeVentaDeEntradas.sedeActual, tarifaSeleccionada));
 
         tomarSeleccionDeEntradas();
 
@@ -163,6 +108,9 @@ public class PantallaDeVentaDeEntradas {
 //        cantidadMaximaSede =  gestorDeVentaDeEntradas.cantMaxVisitantes;
         System.out.println("CANTIDAD MAXIMA SEDE: "+getInstance().cantidadMaximaSede);
 
+        registrarEntradasBtn = (Button)scene.lookup("#registrarEntradasBtn");
+        registrarEntradasBtn.setDisable(true);
+
         cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
         System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas);
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, getInstance().cantidadMaximaSede);
@@ -172,7 +120,15 @@ public class PantallaDeVentaDeEntradas {
         System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas.getValue());
 
         ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
-            cantidadDeEntradasSeleccionadas = (int) newValue;
+            System.out.println("tipoEntradaTipoVisita.getValue(): "+ tipoEntradaTipoVisita.getValue());
+            if (tipoEntradaTipoVisita.getValue() != null && cantidadDeEntradas.getValueFactory().getValue() > 0) {
+                cantidadDeEntradasSeleccionadas = (int) newValue;
+                registrarEntradasBtn.setDisable(false);
+                System.out.println("cantidadDeEntradasSeleccionadas dentro de if true: "+cantidadDeEntradasSeleccionadas);
+            } else if (tipoEntradaTipoVisita.getValue() == null && cantidadDeEntradas.getValueFactory().getValue() < 0){
+                cantidadDeEntradas.getValueFactory().setValue(0);
+                System.out.println("cantidadDeEntradasSeleccionadas dentro de if false: "+cantidadDeEntradasSeleccionadas);
+            }
             if (cantidadDeEntradasSeleccionadas >= getInstance().cantidadMaximaSede){
                 System.out.println("NO SE PUEDEN AGREGAR MÁS ENTRADAS!!!");
                 cantidadDeEntradas.getValueFactory().setValue(getInstance().cantidadMaximaSede);
@@ -275,6 +231,35 @@ public class PantallaDeVentaDeEntradas {
             gestorDeVentaDeEntradas.getInstance().tomarConfirmacionDeVenta(false);
             return false;
         }
+    }
+
+    public void imprimir(){
+        // can use an Alert, Dialog, or PopupWindow as needed...
+        Alert popup = new Alert(Alert.AlertType.INFORMATION);
+        popup.setTitle("IMPRIMIENDO...");
+        popup.setContentText("Se imprimirán las entradas registradas!");
+// hide popup after 3 seconds:
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        delay.setOnFinished(e -> popup.hide());
+
+        popup.show();
+        delay.play();
+    }
+
+    public void switchToLogin(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("PantallaLogin.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToFirstScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("PantallaInicio.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

@@ -5,7 +5,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="443.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VistasFX.PantallaDeVentaDeEntradas">
    <children>
       <ImageView fitHeight="247.0" fitWidth="222.0" layoutX="325.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
@@ -15,6 +14,7 @@
       </ImageView>
       <Button layoutX="62.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" text="Mi Usuario" />
       <Button layoutX="41.0" layoutY="210.0" mnemonicParsing="false" onAction="#habilitarVentana" prefHeight="25.0" prefWidth="172.0" text="Registrar Venta de Entradas" />
+      <Button fx:id="salirBtn" layoutX="79.0" layoutY="244.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="25.0" prefWidth="89.0" text="Salir" />
       <!--<Button layoutX="62.0" layoutY="243.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="25.0" prefWidth="129.0" text="Salir" />-->
    </children>
 </AnchorPane>

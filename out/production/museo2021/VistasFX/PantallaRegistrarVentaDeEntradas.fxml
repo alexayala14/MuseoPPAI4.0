@@ -41,5 +41,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <Button fx:id="atrasBtn" layoutX="14.0" layoutY="467.0" mnemonicParsing="false" onAction="#switchToFirstScene" prefHeight="25.0" prefWidth="64.0" text="Atrás" />
     </children>
 </AnchorPane>
