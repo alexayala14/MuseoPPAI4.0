@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="453.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VistasFX.PantallaLogin">
@@ -15,11 +17,10 @@
          </image>
       </ImageView>
       <Text layoutX="192.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
-      <TextField layoutX="192.0" layoutY="238.0" prefHeight="25.0" prefWidth="225.0" />
+      <TextField fx:id="usuarioField" layoutX="192.0" layoutY="238.0" prefHeight="25.0" prefWidth="225.0" />
       <Text layoutX="192.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
-      <TextField layoutX="192.0" layoutY="297.0" prefHeight="25.0" prefWidth="225.0" />
-      <Button layoutX="187.0" layoutY="332.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Registrarse" />
-      <Button fx:id="ingresar" layoutX="347.0" layoutY="332.0" onAction="#switchToFirstScene" mnemonicParsing="false"  prefHeight="25.0" prefWidth="70.0" text="Ingresar" />
+      <Button fx:id="registrarBtn" layoutX="187.0" layoutY="332.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="25.0" prefWidth="81.0" text="Registrarse" />
+      <Button fx:id="ingresar" layoutX="347.0" layoutY="332.0" mnemonicParsing="false" onAction="#loginHandler" prefHeight="25.0" prefWidth="70.0" text="Ingresar" />
       <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="192.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Imagenes/google.png" />
@@ -35,5 +36,10 @@
             <Image url="@../Imagenes/instagram.png" />
          </image>
       </ImageView>
+      <PasswordField fx:id="contraField" layoutX="189.0" layoutY="298.0" prefHeight="25.0" prefWidth="225.0" />
+      <TextField fx:id="errorField" alignment="CENTER_RIGHT" editable="false" style="-fx-background-color: #ffc1bd; -fx-border-width: 2; -fx-border-style: solid; -fx-border-color: #e60000; -fx-border-radius: 4; -fx-alignment: center-left;" text="ERROR" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></TextField>
    </children>
 </AnchorPane>
