@@ -25,6 +25,7 @@ public class GestorDeVentaDeEntradas  {
     private static int cantidadDeEntradas;
     public int cantMaxVisitantes;
     public int alumnosConfirmados;
+    public float montoTotal;
 
     public GestorDeVentaDeEntradas() {
         //"BASE DE DATOS"
@@ -273,13 +274,11 @@ public class GestorDeVentaDeEntradas  {
     }
 
     public boolean validarCantidadDeEntradas(int cantidadDeEntradas){
-//        int alumnosConfirmados = 0;//Poner arriba como atributo
         for(ReservaVisita e:this.reservasVisita){
             if(e.esSedeActual(this.sedes[1]) && e.validaHorario(e.getHoraInicioReal(), e.getHoraFinReal())){
                 alumnosConfirmados = e.getCantidadAlumnosConfirmada();
             }
         }
-        //Poner arriba como atributo
 
 
         System.out.println("ALUMNOS CONFIRMADOS "+alumnosConfirmados+"  Cantidad Maxima: "+cantMaxVisitantes);
@@ -293,7 +292,6 @@ public class GestorDeVentaDeEntradas  {
             }
             return true;
         }else {
-            //PantallaDeVentaDeEntradas.detalleDeEntradas();
             PantallaDeVentaDeEntradas.mostrarDetalleDeEntrada(0);
             if (cantidadDeEntradas >= cantMaxVisitantes-alumnosConfirmados){
                 cantidadDeEntradas = cantMaxVisitantes-alumnosConfirmados;
@@ -314,11 +312,10 @@ public class GestorDeVentaDeEntradas  {
     }
 
     public float calcularMontoTotal(int cantidadDeEntradas,Tarifa tarifa){
-        float montoTotal = 0; //SACAR ATRIBUTO GLOBALMENTE
-
-            System.out.println("Monto tarifa: " + tarifa.getMonto());
-            System.out.println("Monto adicional por guia: " + tarifa.getMontoAdicionaGuia());
-            montoTotal += (tarifa.getMonto() + tarifa.getMontoAdicionaGuia()) * cantidadDeEntradas;
+        montoTotal = 0;
+        System.out.println("Monto tarifa: " + tarifa.getMonto());
+        System.out.println("Monto adicional por guia: " + tarifa.getMontoAdicionaGuia());
+        montoTotal += (tarifa.getMonto() + tarifa.getMontoAdicionaGuia()) * cantidadDeEntradas;
         System.out.println("EN TOTAL ES EN CALCULAR MONTO TOTAL "+ montoTotal);
 
         return montoTotal;
@@ -338,17 +335,8 @@ public class GestorDeVentaDeEntradas  {
         for (int i = 0; i <= cantidadDeEntradas-1; i++){
             entradas[i] = new Entrada(getDate(), getTime(), (tarifaSelecionada.getMonto()+tarifaSelecionada.getMontoAdicionaGuia()), numeroEntrada+i, null, sedeActual , tarifaSelecionada);
         }
-        for (Entrada e: entradas){
-            System.out.println("Entrada creada fecha: "+e.getFechaVenta());
-            System.out.println("Entrada creada monto: "+e.getMonto());
-            System.out.println("Entrada creada asign visitas: "+e.getAsignacionVisitas());
-            System.out.println("Entrada creada numero: "+e.getNumero());
-            System.out.println("Entrada creada tarifa: "+e.getTarifa().toString());
-        }
         PantallaDeVentaDeEntradas.getInstance().imprimir();
-        System.out.println("SE ACTUALIZARON LA CANTIDAD DE VISITANTES DE: "+cantidadPersonasEnSede);
         this.actualizarCantVisitantes(cantidadDeEntradas);
-        System.out.println("SE ACTUALIZARON LA CANTIDAD DE VISITANTES DE: "+cantidadPersonasEnSede);
         finCasoUso();
     }
 
