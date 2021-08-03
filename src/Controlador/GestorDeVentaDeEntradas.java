@@ -21,7 +21,7 @@ public class GestorDeVentaDeEntradas  {
     public Sede sedeActual;
     private ReservaVisita[] reservasVisita;
     private Entrada[] entradasACrear;
-    private int cantidadPersonasEnSede;
+    public int cantidadPersonasEnSede;
     private static GestorDeVentaDeEntradas instance;
     private static int cantidadDeEntradas;
     public int cantMaxVisitantes;
@@ -339,7 +339,10 @@ public class GestorDeVentaDeEntradas  {
         }
         PantallaDeVentaDeEntradas.getInstance().imprimir();
 
+        System.out.println("Se actualizaron las personas en sede de: "+cantidadPersonasEnSede);
         this.actualizarCantVisitantes(cantidadDeEntradas);
+        PantallaDeVentaDeEntradas.mostrarLabel(cantidadPersonasEnSede);
+        System.out.println("Se actualizaron las personas en sede a: "+cantidadPersonasEnSede);
         finCasoUso();
     }
 

@@ -34,10 +34,13 @@ public class PantallaDeVentaDeEntradas {
     private static TextField montoCampo;
     private static TextField montoAdicionalGuiaCampo;
     private static Spinner<Integer> cantidadDeEntradas;
+    @FXML
     private static Button registrarEntradasBtn;
 
     @FXML
     private static Label errorLbl;
+    @FXML
+    private static Label cantidadVisitantesLbl;
 
     @FXML
     private TableColumn<TablaEntradas, String> tipoEntradaCol = new TableColumn<>("Tipo Entrada");
@@ -60,7 +63,7 @@ public class PantallaDeVentaDeEntradas {
 
     private static float montoEntrada;
     private  int numeroEntrada;
-    private static GestorDeVentaDeEntradas gestorDeVentaDeEntradas;
+    private static GestorDeVentaDeEntradas gestorDeVentaDeEntradas = new GestorDeVentaDeEntradas();
     private int cantidadMaximaSede = GestorDeVentaDeEntradas.getInstance().cantMaxVisitantes;
     private Tarifa[] tarifas;
     
@@ -68,6 +71,16 @@ public class PantallaDeVentaDeEntradas {
     private static ObservableList<TablaEntradas> listaTE = FXCollections.observableArrayList();
 
     private static TablaEntradas tablaDeEntradas;
+
+    public static void mostrarLabel(int cantidadPersonasEnSede) {
+        cantidadVisitantesLbl = (Label)scene.lookup("#cantidadVisitantesLbl");
+//      cantidadPersonasEnSedeLbl.setVisible(true);
+        if (cantidadPersonasEnSede != 0) {
+            cantidadVisitantesLbl.setText("ASDSA");
+        }
+        System.out.println("cantidadVisitantesLbl: "+cantidadVisitantesLbl.getText());
+        System.out.println("CANTIDAD DE PERSONAS LABEL: "+cantidadPersonasEnSede);
+    }
 
     public void cerrarVentana() {
         try {
