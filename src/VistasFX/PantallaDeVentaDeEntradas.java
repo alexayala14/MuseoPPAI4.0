@@ -63,10 +63,7 @@ public class PantallaDeVentaDeEntradas {
     private static GestorDeVentaDeEntradas gestorDeVentaDeEntradas;
     private int cantidadMaximaSede = GestorDeVentaDeEntradas.getInstance().cantMaxVisitantes;
     private Tarifa[] tarifas;
-
-    //EJEMPLOS
-   /* @FXML
-    TableView<TablaEntradas> tablaEntradas = new TableView<>();*/
+    
 
     private static ObservableList<TablaEntradas> listaTE = FXCollections.observableArrayList();
 

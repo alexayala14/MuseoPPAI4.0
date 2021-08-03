@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Random;
 
+// PATRÓN CONTROLADOR
 public class GestorDeVentaDeEntradas  {
 
     public LocalDate fechaHoy = LocalDate.now();
@@ -328,6 +329,7 @@ public class GestorDeVentaDeEntradas  {
         System.out.println("TOMAR CONF DE VENTA EN GESTOR: " + confirmacionDeVenta);
     }
 
+    // PATRÓN CREADOR o PATRÓN EXPERTO
     public void crearEntrada(){
         Random rand = new Random();
         int numeroEntrada = rand.nextInt(10000);
@@ -336,6 +338,7 @@ public class GestorDeVentaDeEntradas  {
             entradas[i] = new Entrada(getDate(), getTime(), (tarifaSelecionada.getMonto()+tarifaSelecionada.getMontoAdicionaGuia()), numeroEntrada+i, null, sedeActual , tarifaSelecionada);
         }
         PantallaDeVentaDeEntradas.getInstance().imprimir();
+
         this.actualizarCantVisitantes(cantidadDeEntradas);
         finCasoUso();
     }
