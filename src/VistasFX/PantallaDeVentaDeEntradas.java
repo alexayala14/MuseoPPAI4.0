@@ -78,8 +78,6 @@ public class PantallaDeVentaDeEntradas {
         if (cantidadPersonasEnSede != 0) {
             cantidadVisitantesLbl.setText("ASDSA");
         }
-        System.out.println("cantidadVisitantesLbl: "+cantidadVisitantesLbl.getText());
-        System.out.println("CANTIDAD DE PERSONAS LABEL: "+cantidadPersonasEnSede);
     }
 
     public void cerrarVentana() {
@@ -115,35 +113,26 @@ public class PantallaDeVentaDeEntradas {
     }
 
     public static void tomarSeleccionDeEntradas(){
-//        cantidadMaximaSede =  gestorDeVentaDeEntradas.cantMaxVisitantes;
-        System.out.println("CANTIDAD MAXIMA SEDE: "+getInstance().cantidadMaximaSede);
 
         registrarEntradasBtn = (Button)scene.lookup("#registrarEntradasBtn");
         registrarEntradasBtn.setDisable(true);
 
         cantidadDeEntradas = (Spinner)scene.lookup("#cantEntradasSpinner");
-        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas);
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, getInstance().cantidadMaximaSede);
         valueFactory.setValue(0);
         cantidadDeEntradas.setValueFactory(valueFactory);
         cantidadDeEntradasSeleccionadas = cantidadDeEntradas.getValue();
-        System.out.println("SPINNER CANTIDAD DE ENTRADAS "+ cantidadDeEntradas.getValue());
 
         ChangeListener listenerSpinner = ((observable, oldValue, newValue) -> {
-            System.out.println("tipoEntradaTipoVisita.getValue(): "+ tipoEntradaTipoVisita.getValue());
             if (tipoEntradaTipoVisita.getValue() != null && cantidadDeEntradas.getValueFactory().getValue() > 0) {
                 cantidadDeEntradasSeleccionadas = (int) newValue;
                 registrarEntradasBtn.setDisable(false);
-                System.out.println("cantidadDeEntradasSeleccionadas dentro de if true: "+cantidadDeEntradasSeleccionadas);
             } else if (tipoEntradaTipoVisita.getValue() == null && cantidadDeEntradas.getValueFactory().getValue() < 0){
                 cantidadDeEntradas.getValueFactory().setValue(0);
-                System.out.println("cantidadDeEntradasSeleccionadas dentro de if false: "+cantidadDeEntradasSeleccionadas);
             }
             if (cantidadDeEntradasSeleccionadas >= getInstance().cantidadMaximaSede){
-                System.out.println("NO SE PUEDEN AGREGAR MÁS ENTRADAS!!!");
                 cantidadDeEntradas.getValueFactory().setValue(getInstance().cantidadMaximaSede);
             }
-            System.out.println("LA CANTIDAD DE ENTRADAS SELECCIONAS EN PANTALLA "+cantidadDeEntradasSeleccionadas);
             gestorDeVentaDeEntradas.tomarSeleccionDeEntradas(cantidadDeEntradasSeleccionadas);
         });
 
@@ -151,14 +140,12 @@ public class PantallaDeVentaDeEntradas {
     }
 
     public static void mostrarTarifas(Tarifa[] tarifas){
-        System.out.println("LLEGARON LAS TARIFAS"+tarifas);
         //tarifas = tarifas;
         ArrayList<String> tiposDeEntradasYVisitas = new ArrayList<>();
         ArrayList<Float> montos = new ArrayList<>();
         ArrayList<Float> montosPorGuia = new ArrayList<>();
 
         for (Tarifa t: tarifas){
-            System.out.println("Tarifa en pantalla: "+ t.toString());
             tiposDeEntradasYVisitas.add("Tipo de Entrada: " + t.getTipoDeEntrada().getNombre() + " | Tipo de Visita: " + t.getTipoVisita().getNombre());
             montos.add(t.getMonto());
             montosPorGuia.add(t.getMontoAdicionaGuia());
@@ -177,7 +164,6 @@ public class PantallaDeVentaDeEntradas {
             montoEntrada = tarifas[indiceSeleccionado].getMonto() + tarifas[indiceSeleccionado].getMontoAdicionaGuia();
             tarifaSeleccionada = tarifas[indiceSeleccionado];
             cantidadDeEntradas.getValueFactory().setValue(0);
-            System.out.println("LA TARIFA SELECCIONADA EN MOSTRAR TARIFA ES : "+ tarifaSeleccionada.getTipoDeEntrada().getNombre());
            gestorDeVentaDeEntradas.tomarSeleccionTarifa(tarifaSeleccionada);
         });
         tipoEntradaTipoVisita.valueProperty().addListener(listenerTarifa);
@@ -195,8 +181,6 @@ public class PantallaDeVentaDeEntradas {
 
             listaTE = FXCollections.observableArrayList();
             tablaEntradas = (TableView<TablaEntradas>) scene.lookup("#tablaEntradas");
-
-            System.out.println("EL MONTO DENTRO DE DETALLE ES: " + monto);
 
             tablaDeEntradas = new TablaEntradas(
                     tarifaSeleccionada.getTipoDeEntrada().getNombre(),
@@ -233,11 +217,9 @@ public class PantallaDeVentaDeEntradas {
         Optional<ButtonType> result = alert.showAndWait();
 
         if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-            System.out.println("RESULTADO: "+result.get());
             gestorDeVentaDeEntradas.getInstance().tomarConfirmacionDeVenta(true);
             return true;
         } else {
-            System.out.println("RESULTADO: "+result.get());
             gestorDeVentaDeEntradas.getInstance().tomarConfirmacionDeVenta(false);
             return false;
         }

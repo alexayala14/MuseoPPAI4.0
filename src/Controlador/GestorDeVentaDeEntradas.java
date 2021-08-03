@@ -218,20 +218,8 @@ public class GestorDeVentaDeEntradas  {
 
     public void registrarVentaDeEntrada(){
         PantallaDeVentaDeEntradas.mostrarTarifas(this.buscarTarifas());
-         //this.buscarTarifas();
-         //falta probar
-//        tomarSeleccionTarifa();
         duracionEstimada= this.calcularDuracionEstimada();
-        System.out.println("LA DURACION ESTIMADA EN VARIABLE ES:" + this.duracionEstimada);
-
-//        tomarSeleccionDeEntradas();
-        /*validarCantidadDeEntradas(cantidadDeEntradas);*/
-//        tomarConfirmacionDeVenta(PantallaDeVentaDeEntradas.getInstance().tomarConfirmacionDeVenta());
-//        getId();
         getDate();
-//        getMonto();
-//        imprimirEntrada();
-//        finCasoUso();
     }
 
     public Tarifa[] buscarTarifas(){
@@ -246,31 +234,23 @@ public class GestorDeVentaDeEntradas  {
                     "El tipo de visita es: "+e.getTipoVisita().getNombre()+"\n");
         }
 
-        //PantallaDeVentaDeEntradas.mostrarTarifas(this.tarifas);
-        System.out.println("LE ESTOY ENVIANDO TARIFAS" + this.tarifas);
-
         return this.tarifas;
     }
 
     public static Tarifa tomarSeleccionTarifa(Tarifa tarifa){
-        //tarifa = tarifa;
-        //System.out.printf("ESTA ES LA TARIFA SELECCIONADA EN GESTOR "+ tarifa.getTipoDeEntrada().getNombre());
         tarifaSelecionada = tarifa;
         return tarifaSelecionada;
     }
 
     public float calcularDuracionEstimada(){
         this.duracionEstimada = this.sedes[0].getDuracion();
-        System.out.println("LA DURACION EN GESTOR ESSSS: "+this.duracionEstimada);
         return this.duracionEstimada;
     }
 
     public static int tomarSeleccionDeEntradas(int cantidadEntradas){
 
-        System.out.println("ESTOY EN SELECCION DEENTRASDA "+ cantidadEntradas);
         cantidadDeEntradas = cantidadEntradas;
-        System.out.println("ES VERDADEROOOOOOOOOO: "+getInstance().validarCantidadDeEntradas(cantidadDeEntradas));
-
+        getInstance().validarCantidadDeEntradas(cantidadDeEntradas);
         return cantidadDeEntradas;
     }
 
@@ -281,15 +261,11 @@ public class GestorDeVentaDeEntradas  {
             }
         }
 
-
-        System.out.println("ALUMNOS CONFIRMADOS "+alumnosConfirmados+"  Cantidad Maxima: "+cantMaxVisitantes);
         if(esMenorCantidadMaximaVisitantes(alumnosConfirmados, cantMaxVisitantes, cantidadDeEntradas)){
 
             //VERIFICAR QUE TARIFA SELECCIONADA NO SEA NULL
             if (tarifaSelecionada != null){
                 PantallaDeVentaDeEntradas.mostrarDetalleDeEntrada(this.calcularMontoTotal(cantidadDeEntradas,tarifaSelecionada));
-                System.out.println("CANTIDAD DE ENTRADAS EN GESTOR (en true): "+cantidadDeEntradas);
-                System.out.println("DENTRO DE IF VA A MONTO "+ tarifaSelecionada.getTipoDeEntrada().getNombre());
             }
             return true;
         }else {
@@ -297,7 +273,6 @@ public class GestorDeVentaDeEntradas  {
             if (cantidadDeEntradas >= cantMaxVisitantes-alumnosConfirmados){
                 cantidadDeEntradas = cantMaxVisitantes-alumnosConfirmados;
             }
-            System.out.println("CANTIDAD DE ENTRADAS EN GESTOR (en false): "+cantidadDeEntradas);
             return false;
         }
     }
@@ -314,11 +289,7 @@ public class GestorDeVentaDeEntradas  {
 
     public float calcularMontoTotal(int cantidadDeEntradas,Tarifa tarifa){
         montoTotal = 0;
-        System.out.println("Monto tarifa: " + tarifa.getMonto());
-        System.out.println("Monto adicional por guia: " + tarifa.getMontoAdicionaGuia());
         montoTotal += (tarifa.getMonto() + tarifa.getMontoAdicionaGuia()) * cantidadDeEntradas;
-        System.out.println("EN TOTAL ES EN CALCULAR MONTO TOTAL "+ montoTotal);
-
         return montoTotal;
     }
 
@@ -326,7 +297,6 @@ public class GestorDeVentaDeEntradas  {
         if (confirmacionDeVenta) {
             this.crearEntrada();
         }
-        System.out.println("TOMAR CONF DE VENTA EN GESTOR: " + confirmacionDeVenta);
     }
 
     // PATRÓN CREADOR o PATRÓN EXPERTO
@@ -338,11 +308,8 @@ public class GestorDeVentaDeEntradas  {
             entradas[i] = new Entrada(getDate(), getTime(), (tarifaSelecionada.getMonto()+tarifaSelecionada.getMontoAdicionaGuia()), numeroEntrada+i, null, sedeActual , tarifaSelecionada);
         }
         PantallaDeVentaDeEntradas.getInstance().imprimir();
-
-        System.out.println("Se actualizaron las personas en sede de: "+cantidadPersonasEnSede);
         this.actualizarCantVisitantes(cantidadDeEntradas);
         PantallaDeVentaDeEntradas.mostrarLabel(cantidadPersonasEnSede);
-        System.out.println("Se actualizaron las personas en sede a: "+cantidadPersonasEnSede);
         finCasoUso();
     }
 
@@ -359,7 +326,6 @@ public class GestorDeVentaDeEntradas  {
     }
 
     public void finCasoUso(){
-        System.out.println("Este es el fin del caso de uso");
         PantallaDeVentaDeEntradas.getInstance().cerrarVentana();
     }
 }
